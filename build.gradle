@@ -3,6 +3,7 @@ buildscript {
 //    ext.kotlin_version = '1.1.2-5'
 
     repositories {
+        google()
         jcenter()
     }
     dependencies {
@@ -30,9 +31,10 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url "https://raw.githubusercontent.com/HyphenateInc/Hyphenate-SDK-Android/master/repository" }
+//        maven { url "https://raw.githubusercontent.com/HyphenateInc/Hyphenate-SDK-Android/master/repository" }
     }
     /*todo fix:
     防止-Xlint:unchecked 重新编译。错误*/
