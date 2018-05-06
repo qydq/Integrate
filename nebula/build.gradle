@@ -64,9 +64,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-//    implementation supportLibrary.appcompat
-    compile supportLibrary.appcompat
-
     /*--------分割线-----------*/
 //      完成既定任务，必要是替换为下面可以检查最新版本，再至config.gradle中修改相应版本
     implementation 'com.android.support:appcompat-v7:26.1.0'
