@@ -66,12 +66,12 @@ dependencies {
 
     /*--------分割线-----------*/
 //      完成既定任务，必要是替换为下面可以检查最新版本，再至config.gradle中修改相应版本
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     /*建议使用约束布局开发，减少布局颜色深度*/
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:0.5'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     compile 'com.android.support:design:26.1.0'
     /*开发种必备的recyclerview的依赖库*/
     compile 'com.android.support:recyclerview-v7:26.1.0'
