@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 group = 'com.github.qydq'
 
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 26
