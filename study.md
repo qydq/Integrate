@@ -1,4 +1,4 @@
-﻿
+
 # Welcome to StackEdit!  
   
 Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.  
@@ -14,17 +14,12 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 
 当然不仅仅是为了面试而面试，通过整理这些能够总结之前的经验，提升自己的能力，同时也能分享一些好的idea给大家，我觉得非常有意义
 
-**转载请标明出处**，有任何疑问的地方，可以通过邮件联系到我
+**转载请标明出处**，有任何疑问的地方，可以通过如下邮件联系到我
 
->* @StartTime：2019-03-23
->* @LastTime：2019-03-31
->* @Email：qyddai@gmail.com
->* @Author ： sunst /  qy
->* @Version：3.0
->* @CommitRecords：
-> > 2019-03-23 version1.0 基础知识使用Stackedit模版
-> > 2019-03-31 version2.0新增内容
-> > 2019-04-01 version3.0新增内容
+>* @StartTime：2019-03-23 
+>* @LastTime：2019-04-04 
+>* @Email：qyddai@gmail.com 
+>* @Author ： sunst /  qy 
 
 
 ## Android介绍
@@ -42,7 +37,7 @@ Android是一个开源的操作系统，主要用于移动设备，比如手机�
 ### 2. Java API 框架层
 Android OS的整个功能集可以通过用Java语言编写的API来获得，如：
 >* 一个丰富且可扩展的View System： 可以使用它来构建应用程序的UI，包括列表，网格，文本框，按钮，甚至可嵌入的Web浏览器；
->* Content Providers： 可让应用访问其他应用的数据，例如通讯录应用，或共享自己的数据。
+>* Content Providers： 可让应用访问其他应用的数据，例如通讯录应用，或共享自己的数据；
 >* Activity Manager： 负责管理应用程序的生命周期并提供一个通用的导航返回栈；
 >* Resource Manager： 提供对非编码资源，如本地字符串，图形，和布局文件；
 >* Notification Manager： 为应用程序提供在状态栏中显示自定义的消息提醒；
@@ -63,6 +58,67 @@ Android平台提供Java框架API以将这些本地库中的一些功能展示给
 ### 5. Linux内核层
 Android是基于Linux内核的（Linux内核提供了安全性、内存管理、进程管理、网络协议和驱动模型等核心系统服务），Linux内核层为各种硬件提供了驱动程序，如显示驱动、相机驱动、蓝牙驱动、电池管理等等
 
+## Android的四大组件是哪些，它们的作用
+
+Activity：Activity是Android程序与用户交互的窗口，是Android构造块中最基本的一种，它需要为保持各界面的状态，做很多持久化的事情，妥善管理生命周期以及一些跳转逻辑
+
+Service：后台服务于Activity，封装有一个完整的功能逻辑实现，接受上层指令，完成相关的事物，定义好需要接受的Intent提供同步和异步的接口
+
+Content Provider：是Android提供的第三方应用数据的访问方案，可以派生Content Provider类，对外提供数据，可以像数据库一样进行选择排序，屏蔽内部数据的存储细节，向外提供统一的借口模型，大大简化上层应用，对数据的整合提供了更方便的途径
+
+BroadCast Receiver：接受一种或者多种Intent作触发事件，接受相关消息，做一些简单处理，转换成一条Notification，统一了Android的事件广播模型
+
+## Activity的生命周期
+
+activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResume()、onPause()、onStop()、onDestory()；
+
+
+1、完整生命周期: 即从一个Activity从出现到消失，对应的周期方法是从onCreate()到onDestroy()
+
+2、可见生命周期: 当Activity处于可以用户看见的状态，但不一定能与用户交互时，将多次执行从onStart()到onStop()
+
+3、前景生命周期: 当Activity处于Activity栈最顶端，能够与其他用户进行交互时，将多次执行从onResume()到onPause()
+如下参考列子：
+1:A页面跳B页面，然后finish B   A生命周期是：onPaused，onStop；onRestart，onResume
+
+2:处于A页面按home键  A生命周期：onPaused，onStop
+
+
+## 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？
+
+
+Android Service是运行在后台的代码，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序进程的上下文里。需要通过某一个Activity或者Context对象来调用。Service有两个启动方法，分别是Context.startService()和Context.bindService()。如果在Service执行耗时的操作需要启动一个新线程来执行。
+
+## Activity的启动模式有哪些？是什么含义？
+
+在android里，有4种activity的启动模式，分别是 standard、singleTask、singleTop、singleInstance
+
+  - standard：标准启动模式，也是Android默认的启动模式
+  - singleTop：如果设置了该模式，当前的Acitivity如果存在任务栈顶，则不需要创建新的activity
+   - singleTask：如果设置了该模式，当前的Acitivity如果存在任务栈中，则不需要创建新的activity实例，并把这个activity之上的实例，通通出栈
+   - singleInstance：如果设置了该模式，当前的Acitivity如果存在该应用中的任何一个任务栈中，则不需要创建新的activity；
+
+## 请介绍下Android中常用的五种布局
+
+常用五种布局方式，分别是：FrameLayout（框架布局），LinearLayout （线性布局），AbsoluteLayout（绝对布局），RelativeLayout（相对布局），TableLayout（表格布局）。
+
+一、FrameLayout：所有东西依次都放在左上角，会重叠，这个布局比较简单，也只能放一点比较简单的东西。
+二、LinearLayout：线性布局，每一个LinearLayout里面又可分为垂直布局（android:orientation="vertical"）和水平布局（android:orientation="horizontal" ）。当垂直布局时，每一行就只有一个元素，多个元素依次垂直往下；水平布局时，只有一行，每一个元素依次向右排列。
+三、AbsoluteLayout：绝对布局用X,Y坐标来指定元素的位置，这种布局方式也比较简单，但是在屏幕旋转时，往往会出问题，而且多个元素的时候，计算比较麻烦。
+四、RelativeLayout：相对布局可以理解为某一个元素为参照物，来定位的布局方式。主要属性有：相对于某一个元素android:layout_below、 android:layout_toLeftOf相对于父元素的地方android:layout_alignParentLeft、android:layout_alignParentRigh；
+五、TableLayout：表格布局，每一个TableLayout里面有表格行TableRow，TableRow里面可以具体定义每一个元素。每一个布局都有自己适合的方式，这五个布局元素可以相互嵌套应用，做出美观的界面
+
+## android中的动画有哪几类，它们的特点和区别是什么
+
+[Android动画详解](https://blog.csdn.net/yanbober/article/details/46481171)
+Android中动画有三类，分别是FrameAnimation，TweenAnimation，PropertyAnimation
+
+>* FrameAnimation（逐帧动画）：将多张图片组合起来进行播放，类似于早期电影的工作原理，很多App的loading是采用这种方式。
+>* TweenAnimation（补间动画）：是对某个View进行一系列的动画的操作，包括淡入淡出（Alpha），缩放（Scale），平移（Translate），旋转（Rotate）四种模式。
+>* PropertyAnimation（属性动画）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。
+
+  属性动画实现原理就是修改控件的属性值实现的动画
+
 ## MVC设计模式
 
 <font color=#0099ff size=4 face="黑体">MVC模式的结构分为三部分，实体层的Model，视图层的View，以及控制层的Controller</font>
@@ -73,7 +129,7 @@ Android是基于Linux内核的（Linux内核提供了安全性、内存管理、
 
 例如：View层接受用户的输入，然后通过Controller修改对应的Model实例；同时，当Model实例的数据发生变化的时候，需要修改UI界面，可以通过Controller更新界面；View层也可以直接更新Model实例的数据
 
-## MVP设计模式
+## ***MVP设计模式
 
 ### 1. 引入的场景
 
@@ -330,37 +386,6 @@ public class Presenter implements IPresenter, Model.LoadDataCallback {
 ```
 大家要多看，多试验，最重要的是**理解思路**，Google官方的MVP代码大家可以去研读一下，是同一个模式，只不过它把好多接口集成在一个接口文件中，防止代码碎片化，大家研读时记住这一点，就不会困惑了。
 
-## Android的四大组件是哪些，它们的作用
-
-Activity：Activity是Android程序与用户交互的窗口，是Android构造块中最基本的一种，它需要为保持各界面的状态，做很多持久化的事情，妥善管理生命周期以及一些跳转逻辑
-
-Service：后台服务于Activity，封装有一个完整的功能逻辑实现，接受上层指令，完成相关的事物，定义好需要接受的Intent提供同步和异步的接口
-
-Content Provider：是Android提供的第三方应用数据的访问方案，可以派生Content Provider类，对外提供数据，可以像数据库一样进行选择排序，屏蔽内部数据的存储细节，向外提供统一的借口模型，大大简化上层应用，对数据的整合提供了更方便的途径
-
-BroadCast Receiver：接受一种或者多种Intent作触发事件，接受相关消息，做一些简单处理，转换成一条Notification，统一了Android的事件广播模型.
-
-## 请介绍下Android中常用的五种布局
-
-常用五种布局方式，分别是：FrameLayout（框架布局），LinearLayout （线性布局），AbsoluteLayout（绝对布局），RelativeLayout（相对布局），TableLayout（表格布局）。
-
-一、FrameLayout：所有东西依次都放在左上角，会重叠，这个布局比较简单，也只能放一点比较简单的东西。
-二、LinearLayout：线性布局，每一个LinearLayout里面又可分为垂直布局（android:orientation="vertical"）和水平布局（android:orientation="horizontal" ）。当垂直布局时，每一行就只有一个元素，多个元素依次垂直往下；水平布局时，只有一行，每一个元素依次向右排列。
-三、AbsoluteLayout：绝对布局用X,Y坐标来指定元素的位置，这种布局方式也比较简单，但是在屏幕旋转时，往往会出问题，而且多个元素的时候，计算比较麻烦。
-四、RelativeLayout：相对布局可以理解为某一个元素为参照物，来定位的布局方式。主要属性有：相对于某一个元素android:layout_below、 android:layout_toLeftOf相对于父元素的地方android:layout_alignParentLeft、android:layout_alignParentRigh；
-五、TableLayout：表格布局，每一个TableLayout里面有表格行TableRow，TableRow里面可以具体定义每一个元素。每一个布局都有自己适合的方式，这五个布局元素可以相互嵌套应用，做出美观的界面
-
-## android中的动画有哪几类，它们的特点和区别是什么
-
-[Android动画详解](https://blog.csdn.net/yanbober/article/details/46481171)
-Android中动画有三类，分别是FrameAnimation，TweenAnimation，PropertyAnimation
-
->* FrameAnimation（逐帧动画）：将多张图片组合起来进行播放，类似于早期电影的工作原理，很多App的loading是采用这种方式。
->* TweenAnimation（补间动画）：是对某个View进行一系列的动画的操作，包括淡入淡出（Alpha），缩放（Scale），平移（Translate），旋转（Rotate）四种模式。
->* PropertyAnimation（属性动画）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。
-
-  属性动画实现原理就是修改控件的属性值实现的动画
-
 ## ListView的优化方案
 
 1、如果自定义适配器，那么在getView方法中要考虑方法传进来的参数contentView是否为null，如果为null就创建contentView并返回，如果不为null则直接使用。在这个方法中尽可能少创建view
@@ -377,7 +402,7 @@ Tips：ListView已经过时了，现在使用RecycleView替代，RecycleView不�
 
 * [ViewPager,RecyclerView,SrollView嵌套事件冲突解决](https://zhuanlan.zhihu.com/p/32748913)
 
-## Android的数据存储方式
+## ***Android的数据存储方式
 
 
 使用SharedPreferences存储；文件存储；SQLite数据库存储；ContentProvider存储；网络存储
@@ -480,42 +505,137 @@ parseId(uri)方法用于从路径中获取ID部分
 
 ContentResolver：当外部应用需要对ContentProvider中的数据进行添加、删除、修改和查询操作时，可以使用 ContentResolver 类来完成，要获取ContentResolver 对象，可以使用Activity提供的getContentResolver()方法。 ContentResolver使用insert、delete、update、query方法，来操作数据。
 
-## Activity的启动模式有哪些？是什么含义？
-
-
-在android里，有4种activity的启动模式，分别是 standard、singleTask、singleTop、singleInstance
-
-  - standard：标准启动模式，也是Android默认的启动模式
-  - singleTop：如果设置了该模式，当前的Acitivity如果存在任务栈顶，则不需要创建新的activity
-   - singleTask：如果设置了该模式，当前的Acitivity如果存在任务栈中，则不需要创建新的activity实例，并把这个activity之上的实例，通通出栈
-   - singleInstance：如果设置了该模式，当前的Acitivity如果存在该应用中的任何一个任务栈中，则不需要创建新的activity；
-
-## Activity的启动过程（不要回答生命周期）
-
+## ***Activity的启动过程（不要回答生命周期）
 
 [http://blog.csdn.net/luoshengyang/article/details/6689748](http://blog.csdn.net/luoshengyang/article/details/6689748)
 
-## Activity的生命周期
+在Android系统中，Activity和Service是应用程序的核心组件，它们以松藕合的方式组合在一起构成了一个完整的应用程序，这得益于应用程序框架层框架层提供了一套完整的机制来协助应用程序启动这些Activity和Service，以及提供Binder机制帮助它们相互间进行通信
 
-activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResume()、onPause()、onStop()、onDestory()；
+ 在Android系统中，有两种操作会引发Activity的启动，一种用户点击应用程序图标时，Launcher会为我们启动应用程序的主Activity；应用程序的默认Activity启动起来后，它又可以在内部通过调用startActvity接口启动新的Activity，依此类推，每一个Activity都可以在内部启动新的Activity
+ 
+无论是通过点击应用程序图标来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都要借助于应用程序框架层的ActivityManagerService服务进程
+
+Service也是由ActivityManagerService进程来启动的。在Android应用程序框架层中，ActivityManagerService是一个非常重要的接口，它不但负责启动Activity和Service，还负责管理Activity和Service
+
+下面介绍一下启动的过程
+
+* Step 1. 无论是通过Launcher来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都通过Binder进程间通信进入到ActivityManagerService进程中，并且调用ActivityManagerService.startActivity接口； 
+
+* Step 2. ActivityManagerService调用ActivityStack.startActivityMayWait来做准备要启动的Activity的相关信息；
+
+* Step 3. ActivityStack通知ApplicationThread要进行Activity启动调度了，这里的ApplicationThread代表的是调用ActivityManagerService.startActivity接口的进程，对于通过点击应用程序图标的情景来说，这个进程就是Launcher了，而对于通过在Activity内部调用startActivity的情景来说，这个进程就是这个Activity所在的进程了；
+
+ * Step 4. ApplicationThread不执行真正的启动操作，它通过调用ActivityManagerService.activityPaused接口进入到ActivityManagerService进程中，看看是否需要创建新的进程来启动Activity；
+
+ * Step 5. 对于通过点击应用程序图标来启动Activity的情景来说，ActivityManagerService在这一步中，会调用startProcessLocked来创建一个新的进程，而对于通过在Activity内部调用startActivity来启动新的Activity来说，这一步是不需要执行的，因为新的Activity就在原来的Activity所在的进程中进行启动；
+
+ * Step 6. ActivityManagerServic调用ApplicationThread.scheduleLaunchActivity接口，通知相应的进程执行启动Activity的操作；
+
+* Step 7. ApplicationThread把这个启动Activity的操作转发给ActivityThread，ActivityThread通过ClassLoader导入相应的Activity类，然后把它启动起来。
+
+这样，Android应用程序的Activity启动过程就启动起来了
+
+## ***Android进程间通信IPC机制Binder简单介绍
 
 
-1、完整生命周期: 即从一个Activity从出现到消失，对应的周期方法是从onCreate()到onDestroy()
+在Android系统中，每一个应用程序都是由一些Activity和Service组成的，这些Activity和Service有可能运行在同一个进程中，也有可能运行在不同的进程中,那么，不在同一个进程的Activity或者Service是如何通信的呢？
 
-2、可见生命周期: 当Activity处于可以用户看见的状态，但不一定能与用户交互时，将多次执行从onStart()到onStop()
+Binder是一种进程间通信机制，它是一种类似于COM和CORBA分布式组件架构，通俗一点，其实是提供远程过程调用RPC(Remote Procedure Call)功能。从英文字面上意思看，Binder具有粘结剂的意思，那么它把什么东西粘结在一起呢？
 
-3、前景生命周期: 当Activity处于Activity栈最顶端，能够与其他用户进行交互时，将多次执行从onResume()到onPause()
-如下参考列子：
-1:A页面跳B页面，然后finish B   A生命周期是：onPaused，onStop；onRestart，onResume
+在Android系统的Binder机制中，由一系统组件组成，分别是Client、Server、Service Manager和Binder驱动程序，
 
-2:处于A页面按home键  A生命周期：onPaused，onStop
+>* Client、Server和Service Manager运行在用户空间；
+>* Binder驱动程序运行内核空间
+
+Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，核心组件便是Binder驱动程序了，Service Manager提供了辅助管理的功能，Client和Server正是在Binder驱动和Service Manager提供的基础设施上，进行Client-Server之间的通信。Service Manager和Binder驱动已经在Android平台中实现好，开发者只要按照规范实现自己的Client和Server组件就可以了。
+
+说起来简单，做起难，对初学者来说，Android系统的Binder机制是最难理解的了，而Binder机制无论从系统开发还是应用开发的角度来看，都是Android系统中最重要的组成，因此，很有必要深入了解Binder的工作方式。要深入了解Binder的工作方式，最好的方式莫过于是阅读Binder相关的源代码了，Linux的鼻祖Linus Torvalds曾经曰过一句名言RTFSC：
+
+>Read The Fucking Source Code
+
+总结一下，Android系统Binder机制中的四个组件Client、Server、Service Manager和Binder驱动程序的关系如下图所示
+![Binder机制4组件关系图xixi](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554372529730&di=0aba86156694af5f93b30818f2adf7af&imgtype=0&src=http://qiangbo-workspace.oss-cn-shanghai.aliyuncs.com/2017-01-15-AndroidAnatomy_Binder/binder_servicemanager.png)
+
+ * 1. Client、Server和Service Manager实现在用户空间中，Binder驱动程序实现在内核空间中
+* 2. Binder驱动程序和Service Manager在Android平台中已经实现，开发者只需要在用户空间实现自己的Client和Server
+* 3. Binder驱动程序提供设备文件/dev/binder与用户空间交互，Client、Server和Service Manager通过open和ioctl文件操作函数与Binder驱动程序进行通信
+ * 4. Client和Server之间的进程间通信通过Binder驱动程序间接实现
+ *  5. Service Manager是一个守护进程，用来管理Server，并向Client提供查询Server接口的能力
+
+至此，对Binder机制总算是有了一个感性的认识，但仍然感到不能很好地从上到下贯穿整个IPC通信过程，推荐下面四个情景，分析Binder源代码的文章，以进一步理解Binder机制
+
+[1. Service Manager是如何成为一个守护进程的？即Service Manager是如何告知Binder驱动程序它是Binder机制的上下文管理者](http://blog.csdn.net/luoshengyang/article/details/6621566)
+ [2. Server和Client是如何获得Service Manager接口的？即defaultServiceManager接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6627260)
+ [3. Server是如何把自己的服务启动起来的？Service Manager在Server启动的过程中是如何为Server提供服务的？即IServiceManager::addService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6629298)
+[4.  Service Manager是如何为Client提供服务的？即IServiceManager::getService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6633311)
+
+## ***Android 进程间通信的几种实现方式
+
+[# Android进程间通信 - 几种方式的对比总结](https://blog.csdn.net/hzw2017/article/details/81275438)
+
+[# Android面试收集录14 Android进程间通信方式](https://www.cnblogs.com/Jason-Jan/p/8459687.html)
 
 
-## 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？
+### 什么是RPC
+RPC（Remote Procedure Call）即远程过程调用，它是一种通过网络从远程计算机程序上请求服务，在不需要了解底层网络技术的协议下，即可获取计算机进程中的数据
+
+RPC使得开发包括网络分布式多程序在内的应用程序更加容易；RPC在OSI网络通信7层模型中，位于传输层与应用层之间，即位于会话层
+![RPC位于OSI网络模型中的位置xixi](https://img-blog.csdn.net/2018072918504362?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6dzIwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+### 什么是IPC
+
+IPC 即 Inter-Process Communication (进程间通信)，是指进程间数据交互的过程
+
+Android底层是基于Linux，而Linux基于安全考虑，是不允许两个进程间直接操作对方的数据，这就是进程隔离。
+
+但Android没有继承Linux中的进程通信的方式，Android有着自己进程间通信方式。常用有如下几种：
+
+#### （1）Bundle （对应于四大组件）
+[详解Android 进程间通信-4种应用程序组件](https://blog.csdn.net/baidu_29094221/article/details/78852998)
+
+总结：
+
+>1. Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输
+>2. 在一个进程中启动了另一个进程的 Activity，Service 和 Receiver ，可以在 Bundle 中附加要传递的数据，通过 Intent 发送出去。
+
+Example ：跨进程访问的Activity，例如，下面的代码可以直接调用拨打电话的Activity
+
+    Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:13570**4685"); startActivity(callIntent);
+#### （2）文件共享
+[参考Android进程通信 - 序列化Serialzable与Parcelable中的示例](https://blog.csdn.net/hzw2017/article/details/80978663)
+
+原理：
+>* 序列化是将对象转换成字节流，持久化保存在内存、文件、数据库中，序列化对象通过网络传输到其他客户端 
+>
+>* 反序列化是将字节流转化成对象。 这样就可以通过文件共享实现进程通信
+
+总结：
+
+Serializable 和Parcelable都可以实现序列化进行数据传递。Serializable只需实现接口（保险点设置serialVersionUID值）即可，而Parcelable实现序列化使用则相对复杂些，当效率比Serializable高，Android底层做了相应的优化
+
+<font color=#0099ff size=4 face="黑体">Tips：保存到SD卡、数据库或网络传输一般使用Serializable序列化，虽然效率低些，但使用很方便。 
+Intent、Bundle、Binder间的数据传递建议使用Parcelable，Android在这块做了内存序列化优化，效率高。</font>
+
+#### （3）ContentProvider（基于Binder） 
+[Android进程间通信 - ContentProvider内容提供者](https://blog.csdn.net/hzw2017/article/details/81123791)
+
+ContentProvider可以跨进程访问其他应用程序中的数据（以Cursor对象形式返回），当然，也可以对其他应用程序的数据进行增、删、改操作，或共享自己的数据
 
 
-Android Service是运行在后台的代码，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序进程的上下文里。需要通过某一个Activity或者Context对象来调用。Service有两个启动方法，分别是Context.startService()和Context.bindService()。如果在Service执行耗时的操作需要启动一个新线程来执行。
+#### （4）AIDL Service（基于Binder） 
+[Android进程通信 - AIDL的使用方法](https://blog.csdn.net/hzw2017/article/details/81048650)
 
+AIDL Service和Content Provider类似，也可以访问其他应用程序中的数据， 
+但不同的是，ContentProvider返回的是Cursor对象， 
+而Service返回的是Java对象，这种可以跨进程通讯的服务叫AIDL服务
+
+* 能自动生成Binder文件的工具，相当于工具
+#### （5）Messenger（基于Binder） 
+* 类似于Hnadler发消息用法
+* [Android进程间通信 - Messenger的使用和理解](https://blog.csdn.net/hzw2017/article/details/81090319)
+
+[AIDL合Messenger对比使用](https://www.cnblogs.com/e007/p/6106482.html)
+#### （6）Socket（网络） 
+[Android进程间通信 - Socket使用（TCP、UDP）](https://blog.csdn.net/hzw2017/article/details/81210979)
 
 ## Service的两种启动方式
 
@@ -528,19 +648,6 @@ Android Service是运行在后台的代码，不能与用户交互，可以运�
 |Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
 |Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
 |Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 
 ## UML diagrams
