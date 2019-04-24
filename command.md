@@ -95,7 +95,7 @@ windows下：adb shell ps | findstr [apk包名]
 11.当前目录下查找文件
 
 （1）查找文件中带有should_search_name字段
->find . -name "*.java" | xargs grep -ir "should_search_name"
+>find . -name "*.java" | xargs grep -ir "should_srearch_name"
 
 （2）查找文件
 
@@ -109,4 +109,12 @@ windows下：adb shell ps | findstr [apk包名]
 
 >adb shell dumpsys activity | grep "Run"
 
+
+# Linux命令
+
+1。移动文件
+
+# mac电脑操作技巧
+
+commond+shift+G,跳出前往文件夹的窗口
 
