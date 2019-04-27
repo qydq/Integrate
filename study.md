@@ -2,9 +2,10 @@
   
 # Welcome to StackEdit!    
     
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.    
+Hi! I'm your  面试题推荐看这篇文章：
+[https://blog.csdn.net/huangqili1314/article/details/72792682](https://blog.csdn.net/huangqili1314/article/details/72792682)
     
-    
+    https://www.zhihu.com/people/qydq
 # 让人眼前一亮的Android面试题集锦（持续更新）  
     
 本内容开始于2019-03-23，持续更新  
@@ -18,7 +19,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 **转载请标明出处**，有任何疑问的地方，可以通过如下邮件联系到我  
   
 >* @StartTime：2019-03-23   
->* @LastTime：2019-04-24   
+>* @LastTime：2019-04-04   /2019-04-27更新
 >* @Email：qyddai@gmail.com   
 >* @Author ： sunst /  qy   
   
@@ -83,12 +84,10 @@ activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResu
 1:A页面跳B页面，然后finish B   A生命周期是：onPaused，onStop；onRestart，onResume  
   
 2:处于A页面按home键  A生命周期：onPaused，onStop  
-  
-  
-## 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？  
-  
-  
-Android Service是运行在后台的代码，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序进程的上下文里。需要通过某一个Activity或者Context对象来调用。Service有两个启动方法，分别是Context.startService()和Context.bindService()。如果在Service执行耗时的操作需要启动一个新线程来执行。  
+
+## 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？
+
+重写onSaveInstanceState()方法，在此方法中保存需要保存的数据，该方法将会在activity被回收之前调用。通过重写onRestoreInstanceState()方法可以从中提取保存好的数据
   
 ## Activity的启动模式有哪些？是什么含义？  
   
@@ -98,6 +97,14 @@ Android Service是运行在后台的代码，不能与用户交互，可以运�
   - singleTop：如果设置了该模式，当前的Acitivity如果存在任务栈顶，则不需要创建新的activity  
    - singleTask：如果设置了该模式，当前的Acitivity如果存在任务栈中，则不需要创建新的activity实例，并把这个activity之上的实例，通通出栈  
    - singleInstance：如果设置了该模式，当前的Acitivity如果存在该应用中的任何一个任务栈中，则不需要创建新的activity；  
+## 如何退出Activity？如何安全退出已调用多个Activity的Application？
+
+对于单一Activity的应用来说，退出很简单，直接finish()即可。当然，也可以用killProcess()和System.exit()这样的方法。
+
+对于多个activity，1、记录打开的Activity：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可。2、发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。3、递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
+
+<font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
+>为了编程方便，最好定义一个Activity基类，处理这些共通问题。
   
 ## 请介绍下Android中常用的五种布局  
   
@@ -119,6 +126,57 @@ Android中动画有三类，分别是FrameAnimation，TweenAnimation，PropertyA
 >* PropertyAnimation（属性动画）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。  
   
   属性动画实现原理就是修改控件的属性值实现的动画  
+## 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？
+程序出现异常，比如nullpointer，在logcat中能看到异常信息，找出异常信息并修改程序。
+
+## 什么是ANR 如何避免它？
+
+ANR：Application Not Responsable。在Android中，Java API 框架层 的ActivityManager和WindowManager负责监视应用程序的响应，当用户操作的在5s内应用程序没能做出反应，BroadcastReceiver在10秒内没有执行完毕，就会出现应用程序无响应对话框，既ANR。
+
+<font color=#0099ff size=4 face="黑体">避免方法：</font>Activity的关键生命周期方法（如onCreate()和onResume()）里尽可能少的去做创建操作。潜在的耗时操作，例如网络或数据库操作，或者高耗时的计算如改变位图尺寸，这些操作都应该在子线程里（或者异步方式）来完成。主线程应该为子线程提供一个Handler，以便完成时能够将任务提交给主线程。
+
+## 序运行时权限与文件系统权限的区别
+运行时权限Dalvik( android授权)
+
+文件系统 linux 内核授权
+
+## Android dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念
+
+DVM指dalivk的虚拟机。每一个Android应用程序都在它自己的进程中运行，都拥有一个独立的Dalvik虚拟机实例。而每一个DVM都是在Linux 中的一个进程，所以说可以认为是同一个概念。
+
+## 什么是嵌入式实时操作系统, Android 操作系统属于实时操作系统吗?
+
+嵌入式实时操作系统是指当外界事件或数据产生时，能够接受并以足够快的速度予以处理，其处理的结果又能在规定的时间之内来控制生产过程或对处理系统作出快速响应，并控制所有实时任务协调一致运行的嵌入式操作系统。主要用于工业控制、 军事设备、 航空航天等领域对系统的响应时间有苛刻的要求，这就需要使用实时系统。又可分为软实时和硬实时两种，而android是基于linux内核的，因此属于软实时。
+
+## 一条最长的短信息约占多少byte?
+
+中文70(包括标点)，英文160，160个字节。
+
+## 如何将SQLite数据库(dictionary.db文件)与apk文件一起发布**
+
+可以将dictionary.db文件复制到Eclipse Android工程中的res aw目录中。所有在res aw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。可以将dictionary.db文件复制到res aw目录中
+
+## 如何将打开res aw目录中的数据库文件?
+
+在Android中不能直接打开res aw目录中的数据库文件，而需要在程序第一次启动时将该文件复制到手机内存或SD卡的某个目录中，然后再打开该数据库文件。
+
+复制的基本方法是使用`getResources().openRawResource`方法获得res aw目录中资源的 InputStream对象，然后将该InputStream对象中的数据写入其他的目录中相应文件中。在Android SDK中可以使用SQLiteDatabase.openOrCreateDatabase方法来打开任意目录中的SQLite数据库文件。
+
+##  DDMS和TraceView的区别?
+
+DDMS是一个程序执行查看器，在里面可以看见线程和堆栈等信息，TraceView是程序性能分析器 。
+
+## java中如何引用本地语言
+
+可以用JNI（java native interface java 本地接口）接口 
+
+## Android里的Intent传递的数据有大小限制吗，如何解决？
+
+Intent传递数据大小的限制大概在1M左右，超过这个限制就会静默崩溃。处理方式如下：
+
+-   进程内：EventBus，文件缓存、磁盘缓存。
+    
+-   进程间：通过ContentProvider进行款进程数据共享和传递。
   
 ## MVC设计模式  
   
@@ -512,15 +570,16 @@ ContentResolver：当外部应用需要对ContentProvider中的数据进行添�
   
 在Android系统中，Activity和Service是应用程序的核心组件，它们以松藕合的方式组合在一起构成了一个完整的应用程序，这得益于应用程序框架层框架层提供了一套完整的机制来协助应用程序启动这些Activity和Service，以及提供Binder机制帮助它们相互间进行通信  
   
- 在Android系统中，有两种操作会引发Activity的启动，一种用户点击应用程序图标时，Launcher会为我们启动应用程序的主Activity；应用程序的默认Activity启动起来后，它又可以在内部通过调用startActvity接口启动新的Activity，依此类推，每一个Activity都可以在内部启动新的Activity  
+有两种操作会引发Activity的启动，一种用户点击应用程序图标时，Launcher会为我们启动应用程序的主Activity；应用程序的默认Activity启动起来后，它又可以在内部通过调用startActvity接口启动新的Activity，依此类推，每一个Activity都可以在内部启动新的Activity  
    
-无论是通过点击应用程序图标来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都要借助于应用程序框架层的ActivityManagerService服务进程  
-  
-Service也是由ActivityManagerService进程来启动的。在Android应用程序框架层中，ActivityManagerService是一个非常重要的接口，它不但负责启动Activity和Service，还负责管理Activity和Service  
+无论是通过点击应用程序图标来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都要借助于应用程序框架层的ActivityManagerService服务进程
+  <font color=#0099ff size=4 face="黑体">Tips:</font>
+>Service也是由ActivityManagerService进程来启动的。在Android应用程序框架层中，ActivityManagerService是一个非常重要的接口，它不但负责启动Activity和Service，还负责管理Activity和Service  
+>
+![enter image description here](http://hi.csdn.net/attachment/201108/14/0_1313305334OkCc.gif)
   
 下面介绍一下启动的过程  
-  
-* Step 1. 无论是通过Launcher来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都通过Binder进程间通信进入到ActivityManagerService进程中，并且调用ActivityManagerService.startActivity接口；   
+* Step 1. 两种方式启动Activity，都通过Binder进程间通信进入到ActivityManagerService进程中，并且调用ActivityManagerService.startActivity接口；   
   
 * Step 2. ActivityManagerService调用ActivityStack.startActivityMayWait来做准备要启动的Activity的相关信息；  
   
@@ -537,8 +596,6 @@ Service也是由ActivityManagerService进程来启动的。在Android应用程�
 这样，Android应用程序的Activity启动过程就启动起来了  
   
 ## ***Android进程间通信IPC机制Binder简单介绍  
-  
-  
 在Android系统中，每一个应用程序都是由一些Activity和Service组成的，这些Activity和Service有可能运行在同一个进程中，也有可能运行在不同的进程中,那么，不在同一个进程的Activity或者Service是如何通信的呢？  
   
 Binder是一种进程间通信机制，它是一种类似于COM和CORBA分布式组件架构，通俗一点，其实是提供远程过程调用RPC(Remote Procedure Call)功能。从英文字面上意思看，Binder具有粘结剂的意思，那么它把什么东西粘结在一起呢？  
@@ -638,19 +695,235 @@ AIDL Service和Content Provider类似，也可以访问其他应用程序中的�
 [AIDL合Messenger对比使用](https://www.cnblogs.com/e007/p/6106482.html)  
 #### （6）Socket（网络）   
 [Android进程间通信 - Socket使用（TCP、UDP）](https://blog.csdn.net/hzw2017/article/details/81210979)  
-  
-## Service的两种启动方式  
-  
-1）startService()，（2）bindService()  
+
+## 理解序列化吗，Android为什么引入Parcelable？
+
+所谓序列化就是将对象变成二进制流，便于存储和传输。  
+-   Serializable是java实现的一套序列化方式，可能会触发频繁的IO操作，效率比较低，适合将对象存储到磁盘上的情况。
+    
+-   Parcelable是Android提供一套序列化机制，它将序列化后的字节流写入到一个共性内存中，其他对象可以从这块共享内存中读出字节流，并反序列化成对象。因此效率比较高，适合在对象间或者进程间传递信息。
+## 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？  
+### 描述：
+Android Service是运行在后台的代码，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序进程的上下文里。需要通过某一个Activity或者Context对象来调用
+
+### 启动方法
 [http://www.jianshu.com/p/2fb6eb14fdec](http://www.jianshu.com/p/2fb6eb14fdec)  
-  
-  
-|                |ASCII                          |HTML                         |  
+
+Service有两个启动方法，分别是
+
+ 1. Context.startService() 
+ 2. Context.bindService()
+
+<font color=#0099ff size=4 face="黑体">Tips：</font>
+>如果在Service执行耗时的操作需要启动一个新线程来执行。 
+### 区别
+
+* startService(): 调用者与服务之间没有关连，调用者退出后Service仍然存在。
+* bindService(): 调用者与服务绑定在了一起，调用者一旦退出，Service也随即终止。
+### 生命周期
+Context.startService()方法启动服务，在服务未被创建时，系统会先调用服务的onCreate()方法，接着调用onStart()方法。如果调用startService()方法前服务已经被创建，多次调用startService()方法并不会导致多次创建服务，<b>但会导致多次调用onStart()方法</b>。采用startService()方法启动的服务，<b>只能调用Context.stopService()方法结束服务</b>，服务结束时会调用onDestroy()方法。
+
+Context.bindService()方法启动服务，在服务未被创建时，系统会先调用服务的`onCreate()`方法，接着调用onBind()方法。这个时候调用者和服务绑定在一起，调用者退出了，系统就会先调用服务的onUnbind()方法，接着调用onDestroy()方法。<b>如果调用bindService()方法前服务已经被绑定，多次调用bindService()方法并不会导致多次创建服务及绑定</b>(也就是说onCreate()和onBind()方法并不会被多次调用)。<b>停用服务可以调用unbindService()方法</b>，服务结束时会调用服务的onUnbind()-->onDestroy()方法。
+
+<font color=#0099ff size=5 face="黑体"><b>总结生命周期</b></font>
+* onCreate() 在服务被创建时调用，无论调用多少次startService()或bindService()方法，该方法只会被调用一次。
+* onDestroy()该方法在服务被终止时调用。
+<b>1. 采用Context.startService()方法启动服务的生命周期</b>
+onStart() 只有采用Context.startService()方法启动服务时才会回调该方法。该方法在服务开始运行时被调用。多次调用startService()方法尽管不会多次创建服务，但onStart() 方法会被多次调用。
+<b>2. 采用Context.bindService()方法启动服务的生命周期</b>
+onBind()只有采用Context.bindService()方法启动服务时才会回调该方法。该方法在调用者与服务绑定时被调用，当调用者与服务已经绑定，多次调用Context.bindService()方法并不会导致该方法被多次调用。onUnbind()只有调用Context.unbindService()方法启动服务时才会回调该方法。该方法在调用者与服务解除绑定时被调用
+###
+
+## 注册广播有几种方式，这些方式有何优缺点？请谈谈Android引入广播机制的用意
+[http://www.jianshu.com/p/ea5e233d9f43](http://www.jianshu.com/p/ea5e233d9f43)  
+此处延伸：什么情况下用动态注册
+
+<b>广播分两种</b>
+
+ - 有序广播 可被拦截，可终止，可以修改数据   　　
+ - 无序广播 是不可以被拦截掉的
+### 注册广播方式
+第一种：静态注册minifest
+```
+<receiver  
+  android:name=".take.ApkInstallReceiver"  
+  android:exported="false">  
+    <intent-filter android:priority="1000">  
+        <action android:name="sunst.installapk.APKINSTALLRECV" />  
+    </intent-filter>  
+</receiver>
+```
+第二种：动态注册activity
+```
+IntentFilter filter =  new IntentFilter("sunst.installapk.APKINSTALLRECV");  
+ApkInstallReceiver receiver = new ApkInstallReceiver();  
+registerReceiver(receiver.filter);
+```
+### 区别
+|                |        静态注册               |动态注册                        |  
 |----------------|-------------------------------|-----------------------------|  
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |  
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |  
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|  
+|<b>静态注册</b> |`常驻型广播，不受组件生命周期影响，即便应用退出，广播还是可以被接收`            |非常驻型广播，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造成内存泄漏            |  
+|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
+
+### 广播发送和接收的原理
+1.  继承BroadcastReceiver，重写onReceive()方法。
+2.  通过Binder机制向ActivityManagerService注册广播。
+3.  通过Binder机制向ActivityMangerService发送广播。
+4.  ActivityManagerService查找符合相应条件的广播(IntentFilter/Permission)，将广播发送到BroadcastReceiver所在的消息队列中。
+5.  BroadcastReceiver所在消息队列拿到此广播后，回调它的onReceive()方法。
+
+## BroadcastReceiver与LocalBroadcastReceiver有什么区别？
+
+-   BroadcastReceiver 是跨应用广播，利用Binder机制实现。
+    
+-   LocalBroadcastReceiver 是应用内广播，利用Handler实现，利用了IntentFilter的match功能，提供消息的发布与接收功能，实现应用内通信，效率比较高。
+## **Service和Thread的区别？
+
+Servie是系统的组件，它由系统进程托管（servicemanager）；它们之间的通信类似于client和server，是一种轻量级的ipc通信，这种通信的载体是binder，它是在linux层交换信息的一种ipc。而thread是由本应用程序托管。
+1). Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
+
+2). Service：Service 是android的一种机制，当它运行的时候如果是Local Service，那么对应的 Service 是运行在主进程的 main 线程上的。如：onCreate，onStart 这些函数在被系统调用的时候都是在主进程的 main 线程上运行的。如果是Remote Service，那么对应的 Service 则是运行在独立进程的 main 线程上。
+
+既然这样，那么我们为什么要用 Service 呢？其实这跟 android 的系统机制有关，我们先拿 Thread 来说。Thread 的运行是独立于 Activity 的，也就是说当一个 Activity 被 finish 之后，如果你没有主动停止 Thread 或者 Thread 里的 run 方法没有执行完毕的话，Thread 也会一直执行。因此这里会出现一个问题：当 Activity 被 finish 之后，你不再持有该 Thread 的引用。另一方面，你没有办法在不同的 Activity 中对同一 Thread 进行控制。
+
+举个例子：如果你的 Thread 需要不停地隔一段时间就要连接服务器做某种同步的话，该 Thread 需要在 Activity 没有start的时候也在运行。这个时候当你 start 一个 Activity 就没有办法在该 Activity 里面控制之前创建的 Thread。因此你便需要创建并启动一个 Service ，在 Service 里面创建、运行并控制该 Thread，这样便解决了该问题（因为任何 Activity 都可以控制同一 Service，而系统也只会创建一个对应 Service 的实例）。
+
+因此你可以把 Service 想象成一种消息服务，而你可以在任何有 Context 的地方调用 Context.startService、Context.stopService、Context.bindService，Context.unbindService，来控制它，你也可以在 Service 里注册 BroadcastReceiver，在其他地方通过发送 broadcast 来控制它，当然这些都是 Thread 做不到的。
+
+## 描述一下View的绘制原理？
+View的绘制流程主要分为三步：
+
+1.  onMeasure：测量视图的大小，从顶层父View到子View递归调用measure()方法，measure()调用onMeasure()方法，onMeasure()方法完成绘制工作。
+    
+2.  onLayout：确定视图的位置，从顶层父View到子View递归调用layout()方法，父View将上一步measure()方法得到的子View的布局大小和布局参数，将子View放在合适的位置上。
+    
+3.  onDraw：绘制最终的视图，首先ViewRoot创建一个Canvas对象，然后调用onDraw()方法进行绘制。onDraw()方法的绘制流程为：① 绘制视图背景。② 绘制画布的图层。 ③ 绘制View内容。  
+    ④ 绘制子视图，如果有的话。⑤ 还原图层。⑥ 绘制滚动条。
+
+以下两个讲解都讲得很透彻，这部分面试官多数不会问很深，要么就给你一个效果让你讲原理。 
+（1）http://www.gcssloop.com/customview/CustomViewIndex 
+（2）http://blog.csdn.net/yanbober/article/details/50577855
+
+
+## JAVA注解反射原理是什么
+可以看我知乎
+
+## Java GC原理
+
+参考：http://www.jianshu.com/p/d75a32ac5bed?
+
+
+
+## 设计模式
+
+
+
+参考：http://gold.xitu.io/entry/56ebb4ad5bbb50004c440972
+
+## RxJava
+
+http://gank.io/post/560e15be2dca930e00da1083?from=timeline&isappinstalled=0#toc_1
+
+## Http Https
+
+http://www.jianshu.com/p/93fdebe5fef1
+
+## 为什么要用ContentProvider？它和sql的实现上有什么差别？
+屏蔽数据存储的细节,对用户透明,用户只需要关心操作数据的uri就可以了,对应的参数 .
+
+## Android UI中的View如何刷新。
+
+Android中对View的更新方式有很多种，使用时要区分不同的应用场合。要分清的是：多线程和双缓冲。
+
+1、不使用多线程和双缓冲
+
+这种情况最简单，一般只希望View在发生改变时对UI进行重绘。你只需要Activity中显式调用View对象中的invalidate()方法即可。系统会自动调用View的onDraw()方法。
+
+2、使用多线程和不使用双缓冲
+
+这种情况下需要开启新的线程，新开的线程就不好访问View对象了。强行访问的话会报错：android.view.ViewRoot$ CalledFromWrongThreadException: only theoriginal thread that created a view hierarchy can touch its views。
+
+这时候你需要创建一个继承了android.os.handler的子类，并重写handleMessage方法。Android.os.Handle是能发送和处理消息的，你需要在Activity中发出更新UI的消息，然后再你的Handler(可以使用匿名内部类)中处理消息(因为匿名内部类可以访问父类变量，你可以直接调用View对象中的invalidate()方法。也就是说：在新线程中创建并发送一个Message，然后在主线程中捕获、处理该消息。
+
   
+
+3、使用多线程和双缓冲
+
+Android的SurfaceView是View的子类，她同时也实现了双缓冲。你可以定义一个她的子类并实现Surfaceholder.Callback接口。由于SurfaceHolder.Callback接口，新线程就不要android.os.Handler帮忙了。SurfaceHolder中lockCanvas()方法可以锁定画布，绘制完新的图像后调用unlockCanvasand Post解锁。
+
+<font color=#0099ff size=4 face="黑体">失败是什么？没有什么，只是更走近成功一步；成功是什么？就是走过了所有通向失败的路，只剩下一条路，那就是成功的路。</font>
+
+## requestLayout()、invalidate()与postInvalidate()有什么区别？
+
+-   requestLayout()：该方法会递归调用父窗口的requestLayout()方法，直到触发ViewRootImpl的performTraversals()方法，此时mLayoutRequestede为true，会触发onMesaure()与onLayout()方法，不一定  
+    会触发onDraw()方法。
+    
+-   invalidate()：该方法递归调用父View的invalidateChildInParent()方法，直到调用ViewRootImpl的invalidateChildInParent()方法，最终触发ViewRootImpl的performTraversals()方法，此时mLayoutRequestede为false，不会  
+    触发onMesaure()与onLayout()方法，当时会触发onDraw()方法。
+    
+-   postInvalidate()：该方法功能和invalidate()一样，只是它可以在非UI线程中调用。
+
+一般说来需要重新布局就调用requestLayout()方法，需要重新绘制就调用invalidate()方法。
+
+## 了解APK的打包流程吗，描述一下？
+
+Android的包文件APK分为两个部分：代码和资源，所以打包方面也分为资源打包和代码打包两个方面
+具体说来：
+
+1.  通过AAPT工具进行资源文件（包括AndroidManifest.xml、布局文件、各种xml资源等）的打包，生成R.java文件。
+    
+2.  通过AIDL工具处理AIDL文件，生成相应的Java文件。
+    
+3.  通过Javac工具编译项目源码，生成Class文件。
+    
+4.  通过DX工具将所有的Class文件转换成DEX文件，该过程主要完成Java字节码转换成Dalvik字节码，压缩常量池以及清除冗余信息等工作。
+    
+5.  通过ApkBuilder工具将资源文件、DEX文件打包生成APK文件。
+    
+6.  利用KeyStore对生成的APK文件进行签名。
+    
+7.  如果是正式版的APK，还会利用ZipAlign工具进行对齐处理，对齐的过程就是将APK文件中所有的资源文件举例文件的起始距离都偏移4字节的整数倍，这样通过内存映射访问APK文件  
+    的速度会更快。
+## 如何做性能优化？
+
+1.  节制的使用Service，当启动一个Service时，系统总是倾向于保留这个Service依赖的进程，这样会造成系统资源的浪费，可以使用IntentService，执行完成任务后会自动停止。
+    
+2.  当界面不可见时释放内存，可以重写Activity的onTrimMemory()方法，然后监听TRIM_MEMORY_UI_HIDDEN这个级别，这个级别说明用户离开了页面，可以考虑释放内存和资源。
+    
+3.  避免在Bitmap浪费过多的内存，使用压缩过的图片，也可以使用Fresco等库来优化对Bitmap显示的管理。
+    
+4.  使用优化过的数据集合SparseArray代替HashMap，HashMap为每个键值都提供一个对象入口，使用SparseArray可以免去基本对象类型转换为引用数据类想的时间。
+    
+
+## 如果防止过度绘制，如何做布局优化?
+
+1.  使用include复用布局文件。
+    
+2.  使用merge标签避免嵌套布局。
+    
+3.  使用stub标签仅在需要的时候在展示出来。
+
+## 如何提交代码质量？
+
+1.  避免创建不必要的对象，尽可能避免频繁的创建临时对象，例如在for循环内，减少GC的次数。
+    
+2.  尽量使用基本数据类型代替引用数据类型。
+    
+3.  静态方法调用效率高于动态方法，也可以避免创建额外对象。
+    
+4.  对于基本数据类型和String类型的常量要使用static final修饰，这样常量会在dex文件的初始化器中进行初始化，使用的时候可以直接使用。
+    
+5.  多使用系统API，例如数组拷贝System.arrayCopy()方法，要比我们用for循环效率快9倍以上，因为系统API很多都是通过底层的汇编模式执行的，效率比较高。
+## 没有遇到64k问题，为什么，如何解决?
+
+-   在DEX文件中，method、field、class等的个数使用short类型来做索引，即两个字节（65535），method、field、class等均有此限制。
+    
+-   APK在安装过程中会调用dexopt将DEX文件优化成ODEX文件，dexopt使用LinearAlloc来存储应用信息，关于LinearAlloc缓冲区大小，不同的版本经历了4M/8M/16M的限制，超出  
+    缓冲区时就会抛出INSTALL_FAILED_DEXOPT错误。
+    
+这个我没遇见过：回答解决方案就行了
+
+解决方案是Google的MultiDex方案，具体参见：配置方法数超过 64K 的应用。
   
 ## UML diagrams  
   
@@ -1002,3 +1275,23 @@ handler.removeCallbacksAndMessages(null);
 super.onDestroy(); 
 }
 ```
+### 2.  Android的事件分发机制？
+ 本人知乎
+### 3. Java有哪几种创建新线程的方法及区别
+### 4.static修饰的方法可以被子类重写吗？为什么？
+### 5.如何优化一个ListView
+参考上面一总结，这里补充高级
+### 6.那些情况会导致OOM?
+答: 导致内存泄露主要的原因是，先前申请了内存空间而忘记了释放。如果程序中存在无用对象的引用，那么这些对象就会驻留内存，消耗内存，因为无法让垃圾回收器GC验证这些对象是否不再需要。如果存在对象的引用，这个对象就被定义为“有效的活动”，同时不会被释放。要确定对象所占内存将被回收，我们就要确认该对象不会再被使用。典型的做法是把对象数据成员设为null或者从集合中移除该对象。当出现以下情况时，会造成内存泄露:
+
+1、 数据库的cursor没有关闭。
+
+2、 构造adapter时，没有使用缓存contentview。
+
+3、 Bitmap对象不使用时，采用recycle()释放内存。
+
+4、 Activity中的对象的生命周期大于activity。
+### 7.如何检测内存泄漏？有哪些工具？
+
+查找内存泄漏可以使用Android Profiler工具或者利用LeakCanary工具。
+### 8.用leak工具检测内存泄漏的原理是什么？
