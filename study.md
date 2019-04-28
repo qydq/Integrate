@@ -1,42 +1,53 @@
+[TOC]
 
-  
 # Welcome to StackEdit!    
     
-Hi! I'm your  面试题推荐看这篇文章：
+Hi! I'm your  面试题，推荐看这篇文章：
 [https://blog.csdn.net/huangqili1314/article/details/72792682](https://blog.csdn.net/huangqili1314/article/details/72792682)
-    
-    https://www.zhihu.com/people/qydq
+ 
+ 
+[我的知乎主页](https://www.zhihu.com/people/qydq)
+  
+> @StartTime：2019-03-23   
+> @UpdataRecording：
+>* 2019-04-04更新   
+>* 2019-04-27更新
+>
+> @Email：qyddai@gmail.com
+> @Author ： sunst /  qy   
+ 
+ <font color=#0099ff size=4 face="黑体">失败是什么？没有什么，只是更走近成功一步；成功是什么？就是走过了所有通向失败的路，只剩下一条路，那就是成功的路。</font>
 # 让人眼前一亮的Android面试题集锦（持续更新）  
     
 本内容开始于2019-03-23，持续更新  
   
-在开始整理该内容时，网上搜罗一大圈，发现很多内容都时间比较久远，内容不更新，而且有的错误，比如一篇文章介绍Android动画两种，但其实Android中有3中动画的  
+在开始整理该内容时，网上搜罗一大圈，发现很多内容都时间比较久远，内容不更新，而且有的错误，比如一篇文章介绍Android动画两种，但其实Android中有3中动画的
   
 于带着前人的智慧和自己开发中的经验来整理一篇关于Android的面试题，题目就叫**让人眼前一亮的Android面试题集锦**  
   
 当然不仅仅是为了面试而面试，通过整理这些能够总结之前的经验，提升自己的能力，同时也能分享一些好的idea给大家，我觉得非常有意义  
   
-**转载请标明出处**，有任何疑问的地方，可以通过如下邮件联系到我  
+<font color=#ff0000 size=5 face="微软雅黑"><b>©️版权声明CopyRight：</b></font>
+
+>**本内容作者：sunst，转载或引用请标明[出处](https://www.zhihu.com/people/qydq)，违者追究法律责任。**
+
+[toc]
   
->* @StartTime：2019-03-23   
->* @LastTime：2019-04-04   /2019-04-27更新
->* @Email：qyddai@gmail.com   
->* @Author ： sunst /  qy   
-  
-  
-## Android介绍  
-Android是一个开源的操作系统，主要用于移动设备，比如手机，平板电脑，它是一种基于Linux的开放源代码软件栈，应用于ARM平台，但不仅限于ARM，通过编译控制，在X86等体系结构的机器上同样可以运行，并且它提供了丰富的组件，允许开发人员编写可执行基本和高级功能的应用程序  
-  
-## Android系统架构  
-与其他操作系统一样，Android也采用分层的架构设计，从高到低分别是系统应用层（System Apps），Java API 框架层（Java API Framework），Android系统运行层（包括Android Runtime和原生态的C/C++库 Native C/C++ Libraries）、硬件抽象层（Hardware Abstraction Layer）、Linux内核层（Linux Kernel）。如下图所示：  
+## 1. Android介绍  
+Android是一个开源的操作系统，主要用于移动设备，比如手机，平板电脑，它是一种基于Linux的开放源代码软件栈，应用于ARM平台，但不仅限于ARM，通过编译控制，在X86等体系结构的机器上同样可以运行，并且它提供了丰富的组件，允许开发人员编写可执行基本和高级功能的应用程序。
+
+**此处延伸：**
+ * [Android不同架构的机器有何不同？](https://blog.csdn.net/kester_/article/details/71055901)
+## 2. Android系统架构  
+与其他操作系统一样，Android也采用分层的架构设计，从高到低分别是系统应用层（System Apps），Java API 框架层（Java API Framework），Android系统运行层（包括Android Runtime和Native C/C++ Libraries）、硬件抽象层（Hardware Abstraction Layer）、Linux内核层（Linux Kernel）。如下图所示：  
 ![sunst](https://img-blog.csdn.net/20180912192908403?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NhbGFyeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)  
   
 下面由上至下分别介绍各层  
   
-### 1. 系统应用层  
+### (1). 系统应用层  
 所有安装在手机上的系统应用都属于这一层，用户自己开发的应用也属于这一层  
   
-### 2. Java API 框架层  
+### (2). Java API 框架层  
 Android OS的整个功能集可以通过用Java语言编写的API来获得，如：  
 >* 一个丰富且可扩展的View System： 可以使用它来构建应用程序的UI，包括列表，网格，文本框，按钮，甚至可嵌入的Web浏览器；  
 >* Content Providers： 可让应用访问其他应用的数据，例如通讯录应用，或共享自己的数据；  
@@ -44,141 +55,160 @@ Android OS的整个功能集可以通过用Java语言编写的API来获得，如
 >* Resource Manager： 提供对非编码资源，如本地字符串，图形，和布局文件；  
 >* Notification Manager： 为应用程序提供在状态栏中显示自定义的消息提醒；  
   
-### 3.  Android系统运行层  
+### (3). Android系统运行层  
 这一层包括Android Runtime和原生态的C/C++库。  
-* 原生态的C/C++库  
+ * 原生态的C/C++库  
   
 许多核心的Android系统组件和服务（如ART和HAL）都是使用本地代码构建的，需要使用C和C ++编写的本机库。  
-Android平台提供Java框架API以将这些本地库中的一些功能展示给应用程序。 例如，您可以通过Android框架的Java OpenGL API访问OpenGL ES，以添加对在应用程序中绘制和操作2D和3D图形的支持。WebKit提供了浏览器支持等  
-* Android运行时  
+Android平台提供的`Java框架API`将这些本地库中的一些功能展示给应用程序。 例如，您可以通过Android框架的Java OpenGL API访问OpenGL ES，以添加对在应用程序中绘制和操作2D和3D图形的支持。WebKit提供了浏览器支持等  
+ * Android运行时  
   
 包括了ART虚拟机（Android 5.0之前是Dalvik虚拟机，ART模式与Dalvik模式最大的不同在于，在启用ART模式后，系统在安装应用的时候会进行一次预编译AOT，先将代码转换为机器语言存储在本地，这样在运行程序时就不会每次都进行一次编译了，执行效率也大大提升。如果您的应用在 ART 上运行效果很好，那么它应该也可在 Dalvik 上运行，但反过来不一定。），每个Java程序都运行在ART虚拟机上，该虚拟机专门针对移动设备进行了定制，每个应用都有其自己的 Android Runtime (ART) 实例  
   
-### 4. 硬件抽象层（Hardware Abstraction Layer）  
- 硬件抽象层 （HAL）提供了将设备硬件功能展示给更高级Java API框架的标准接口。 HAL由多个库模块组成，其中每个模块都为特定类型的硬件组件（如相机或蓝牙模块）实现接口。 当框架API调用访问设备硬件时，Android系统会自动为该硬件组件加载库模块  
+### (4). 硬件抽象层（Hardware Abstraction Layer）  
+ 硬件抽象层 （HAL）提供了将设备硬件功能展示给更高级`Java框架API`的标准接口。 HAL由多个库模块组成，其中每个模块都为特定类型的硬件组件（如相机或蓝牙模块）实现接口。 当框架API调用访问设备硬件时，Android系统会自动为该硬件组件加载库模块  
   
-### 5. Linux内核层  
+### (5). Linux内核层  
 Android是基于Linux内核的（Linux内核提供了安全性、内存管理、进程管理、网络协议和驱动模型等核心系统服务），Linux内核层为各种硬件提供了驱动程序，如显示驱动、相机驱动、蓝牙驱动、电池管理等等  
   
-## Android的四大组件是哪些，它们的作用  
+## 3. Android的四大组件是哪些，它们的作用  
   
 Activity：Activity是Android程序与用户交互的窗口，是Android构造块中最基本的一种，它需要为保持各界面的状态，做很多持久化的事情，妥善管理生命周期以及一些跳转逻辑  
   
 Service：后台服务于Activity，封装有一个完整的功能逻辑实现，接受上层指令，完成相关的事物，定义好需要接受的Intent提供同步和异步的接口  
   
-Content Provider：是Android提供的第三方应用数据的访问方案，可以派生Content Provider类，对外提供数据，可以像数据库一样进行选择排序，屏蔽内部数据的存储细节，向外提供统一的借口模型，大大简化上层应用，对数据的整合提供了更方便的途径  
+Content Provider：是Android提供的第三方应用数据的访问方案，可以派生Content Provider类，对外提供数据，可以像数据库一样进行选择排序，屏蔽内部数据的存储细节，向外提供统一的接口模型，大大简化上层应用，对数据的整合提供了更方便的途径  
   
 BroadCast Receiver：接受一种或者多种Intent作触发事件，接受相关消息，做一些简单处理，转换成一条Notification，统一了Android的事件广播模型  
   
-## Activity的生命周期  
+## 4. Activity的生命周期  
   
-activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResume()、onPause()、onStop()、onDestory()；  
-  
+Activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResume()、onPause()、onStop()、onDestory()；  
   
 1、完整生命周期: 即从一个Activity从出现到消失，对应的周期方法是从onCreate()到onDestroy()  
   
 2、可见生命周期: 当Activity处于可以用户看见的状态，但不一定能与用户交互时，将多次执行从onStart()到onStop()  
   
 3、前景生命周期: 当Activity处于Activity栈最顶端，能够与其他用户进行交互时，将多次执行从onResume()到onPause()  
-如下参考列子：  
-1:A页面跳B页面，然后finish B   A生命周期是：onPaused，onStop；onRestart，onResume  
-  
-2:处于A页面按home键  A生命周期：onPaused，onStop  
 
-## 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？
+**如下例子**
 
-重写onSaveInstanceState()方法，在此方法中保存需要保存的数据，该方法将会在activity被回收之前调用。通过重写onRestoreInstanceState()方法可以从中提取保存好的数据
+ * A页面跳B页面，然后finish B  A生命周期：onPaused，onStop；onRestart，onResume
+
+ - A页面按Home键  A生命周期：onPaused，onStop
+
+## 5. 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？
+
+重写`onSaveInstanceState()`方法，在此方法中保存需要保存的数据，该方法将会在Activity被回收之前调用。通过重写`onRestoreInstanceState()`方法可以从中获取保存好的数据
   
-## Activity的启动模式有哪些？是什么含义？  
+## 6. Activity的启动模式有哪些？是什么含义？  
   
-在android里，有4种activity的启动模式，分别是 standard、singleTask、singleTop、singleInstance  
+在Android里，有4种Activity启动模式，分别是 standard、singleTop、singleTask、singleInstance  
   
   - standard：标准启动模式，也是Android默认的启动模式  
   - singleTop：如果设置了该模式，当前的Acitivity如果存在任务栈顶，则不需要创建新的activity  
    - singleTask：如果设置了该模式，当前的Acitivity如果存在任务栈中，则不需要创建新的activity实例，并把这个activity之上的实例，通通出栈  
    - singleInstance：如果设置了该模式，当前的Acitivity如果存在该应用中的任何一个任务栈中，则不需要创建新的activity；  
-## 如何退出Activity？如何安全退出已调用多个Activity的Application？
+## 7. 如何退出Activity？如何安全退出已调用多个Activity的Application？
 
 对于单一Activity的应用来说，退出很简单，直接finish()即可。当然，也可以用killProcess()和System.exit()这样的方法。
 
-对于多个activity，1、记录打开的Activity：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可。2、发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。3、递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
+对于多个Activity
+
+> 1、**记录打开的Activity**：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可
+> 2、**发送特定广播**：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可
+> 3、**递归退出**：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭
 
 <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
+
 >为了编程方便，最好定义一个Activity基类，处理这些共通问题。
   
-## 请介绍下Android中常用的五种布局  
+## 8. 请介绍下Android中常用的五种布局  
   
 常用五种布局方式，分别是：FrameLayout（框架布局），LinearLayout （线性布局），AbsoluteLayout（绝对布局），RelativeLayout（相对布局），TableLayout（表格布局）。  
   
-一、FrameLayout：所有东西依次都放在左上角，会重叠，这个布局比较简单，也只能放一点比较简单的东西。  
-二、LinearLayout：线性布局，每一个LinearLayout里面又可分为垂直布局（android:orientation="vertical"）和水平布局（android:orientation="horizontal" ）。当垂直布局时，每一行就只有一个元素，多个元素依次垂直往下；水平布局时，只有一行，每一个元素依次向右排列。  
-三、AbsoluteLayout：绝对布局用X,Y坐标来指定元素的位置，这种布局方式也比较简单，但是在屏幕旋转时，往往会出问题，而且多个元素的时候，计算比较麻烦。  
-四、RelativeLayout：相对布局可以理解为某一个元素为参照物，来定位的布局方式。主要属性有：相对于某一个元素android:layout_below、 android:layout_toLeftOf相对于父元素的地方android:layout_alignParentLeft、android:layout_alignParentRigh；  
-五、TableLayout：表格布局，每一个TableLayout里面有表格行TableRow，TableRow里面可以具体定义每一个元素。每一个布局都有自己适合的方式，这五个布局元素可以相互嵌套应用，做出美观的界面  
+一、**FrameLayout**：所有东西依次都放在左上角，会重叠，这个布局比较简单，也只能放一点比较简单的东西。  
+二、**LinearLayout**：线性布局，每一个LinearLayout里面又可分为垂直布局（android:orientation="vertical"）和水平布局（android:orientation="horizontal" ）。当垂直布局时，每一行就只有一个元素，多个元素依次垂直往下；水平布局时，只有一行，每一个元素依次向右排列。  
+三、**AbsoluteLayout**：绝对布局用X,Y坐标来指定元素的位置，这种布局方式也比较简单，但是在屏幕旋转时，往往会出问题，而且多个元素的时候，计算比较麻烦。  
+四、**RelativeLayout**：相对布局可以理解为某一个元素为参照物，来定位的布局方式
+> 主要属性： 
+> * 相对于某元素-> android:layout_below、 android:layout_toLeftOf
+> * 相对于父元素-> android:layout_alignParentLeft、android:layout_alignParentRigh
+
+五、**TableLayout**：表格布局，每一个TableLayout里面有表格行TableRow，TableRow里面可以具体定义每一个元素。每一个布局都有自己适合的方式，这五个布局元素可以相互嵌套应用，做出美观的界面  
   
-## android中的动画有哪几类，它们的特点和区别是什么  
-  
-[Android动画详解](https://blog.csdn.net/yanbober/article/details/46481171)  
+## 9. Android中的动画有哪几类，它们的特点和区别是什么  
 Android中动画有三类，分别是FrameAnimation，TweenAnimation，PropertyAnimation  
   
 >* FrameAnimation（逐帧动画）：将多张图片组合起来进行播放，类似于早期电影的工作原理，很多App的loading是采用这种方式。  
 >* TweenAnimation（补间动画）：是对某个View进行一系列的动画的操作，包括淡入淡出（Alpha），缩放（Scale），平移（Translate），旋转（Rotate）四种模式。  
 >* PropertyAnimation（属性动画）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。  
-  
-  属性动画实现原理就是修改控件的属性值实现的动画  
-## 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？
+
+  <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
+  >属性动画实现原理就是修改控件的属性值实现的动画  
+
+  **此处延伸：**
+  * [Android动画使用详解](https://blog.csdn.net/yanbober/article/details/46481171)  
+## 10. 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？
 程序出现异常，比如nullpointer，在logcat中能看到异常信息，找出异常信息并修改程序。
 
-## 什么是ANR 如何避免它？
+## 11. 什么是ANR 如何避免它？
 
-ANR：Application Not Responsable。在Android中，Java API 框架层 的ActivityManager和WindowManager负责监视应用程序的响应，当用户操作的在5s内应用程序没能做出反应，BroadcastReceiver在10秒内没有执行完毕，就会出现应用程序无响应对话框，既ANR。
+ANR：Application Not Responsable。在Android中，Java API框架层的ActivityManager和WindowManager负责监视应用程序的响应，当用户操作的在5s内应用程序没能做出反应，BroadcastReceiver在10秒内没有执行完毕，就会出现应用程序无响应对话框，既ANR。
 
-<font color=#0099ff size=4 face="黑体">避免方法：</font>Activity的关键生命周期方法（如onCreate()和onResume()）里尽可能少的去做创建操作。潜在的耗时操作，例如网络或数据库操作，或者高耗时的计算如改变位图尺寸，这些操作都应该在子线程里（或者异步方式）来完成。主线程应该为子线程提供一个Handler，以便完成时能够将任务提交给主线程。
+<font color=#0099ff size=4 face="黑体">避免方法：</font>Activity的关键生命周期方法（如onCreate()和onResume()）里尽可能少的去做创建操作，潜在的耗时操作。例如网络或数据库操作，或者高耗时的计算如改变位图尺寸，这些操作都应该在子线程里（或者异步方式）来完成。主线程应该为子线程提供一个Handler，以便完成时能够将任务提交给主线程。
 
-## 序运行时权限与文件系统权限的区别
-运行时权限Dalvik( android授权)
+  <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
+>腾讯发送消息19+15个句号发生ANR了
 
-文件系统 linux 内核授权
+  **此处延伸：**
 
-## Android dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念
+ - [Android内存泄漏分析与解决办法](我的知乎)
 
-DVM指dalivk的虚拟机。每一个Android应用程序都在它自己的进程中运行，都拥有一个独立的Dalvik虚拟机实例。而每一个DVM都是在Linux 中的一个进程，所以说可以认为是同一个概念。
+## 12. 运行时权限与文件系统权限的区别
+运行时权限Android(`Dalvik`或`ART`)授权
 
-## 什么是嵌入式实时操作系统, Android 操作系统属于实时操作系统吗?
+文件系统权限`Linux`内核授权
 
-嵌入式实时操作系统是指当外界事件或数据产生时，能够接受并以足够快的速度予以处理，其处理的结果又能在规定的时间之内来控制生产过程或对处理系统作出快速响应，并控制所有实时任务协调一致运行的嵌入式操作系统。主要用于工业控制、 军事设备、 航空航天等领域对系统的响应时间有苛刻的要求，这就需要使用实时系统。又可分为软实时和硬实时两种，而android是基于linux内核的，因此属于软实时。
+## 13. Android dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念
 
-## 一条最长的短信息约占多少byte?
+DVM指dalivk虚拟机。每一个Android应用程序都在它自己的进程中运行，都拥有一个独立的`Dalvik`或`ART`虚拟机实例。而每一个`DVM`或`ART`都是在Linux 中的一个进程，所以说可以认为是同一个概念。
+
+## 14. 什么是嵌入式实时操作系统, Android 操作系统属于实时操作系统吗?
+
+嵌入式实时操作系统是指当外界事件或数据产生时，能够接受并以足够快的速度予以处理，其处理的结果又能在规定的时间之内来控制**生产过程**或对系统作出快速响应，并控制所有**实时任务**协调一致运行的嵌入式操作系统。主要用于工业控制、 军事设备、 航空航天等领域对系统的响应时间有苛刻的要求，这就需要使用实时系统。又可分为软实时和硬实时两种，Android是基于Linux内核的，因此属于软实时。
+
+## 15. 一条最长的短信息约占多少byte?
 
 中文70(包括标点)，英文160，160个字节。
 
-## 如何将SQLite数据库(dictionary.db文件)与apk文件一起发布**
+## 16. 如何将SQLite数据库(dictionary.db文件)与apk文件一起发布**
 
-可以将dictionary.db文件复制到Eclipse Android工程中的res aw目录中。所有在res aw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。可以将dictionary.db文件复制到res aw目录中
+可以将dictionary.db文件复制到Android工程中的res aw目录中。所有在res aw目录中的文件不会被压缩，这样可以直接提取该目录中的文件。
 
-## 如何将打开res aw目录中的数据库文件?
+## 17. 如何打开res aw目录中的数据库文件?
 
-在Android中不能直接打开res aw目录中的数据库文件，而需要在程序第一次启动时将该文件复制到手机内存或SD卡的某个目录中，然后再打开该数据库文件。
+在Android中不能直接打开`res aw`目录中的数据库文件，而需要在程序第一次启动时将该文件复制到手机内存或SD卡的某个目录中，然后再打开该数据库文件。
 
-复制的基本方法是使用`getResources().openRawResource`方法获得res aw目录中资源的 InputStream对象，然后将该InputStream对象中的数据写入其他的目录中相应文件中。在Android SDK中可以使用SQLiteDatabase.openOrCreateDatabase方法来打开任意目录中的SQLite数据库文件。
+复制的基本方法是使用`getResources().openRawResource`方法获得res aw目录中资源的 InputStream对象，然后将该InputStream对象中的数据写入其他的目录中相应文件中。在Android SDK中可以使用`SQLiteDatabase.openOrCreateDatabase`方法来打开任意目录中的SQLite数据库文件。
 
-##  DDMS和TraceView的区别?
+##  18. DDMS和TraceView的区别?
 
 DDMS是一个程序执行查看器，在里面可以看见线程和堆栈等信息，TraceView是程序性能分析器 。
 
-## java中如何引用本地语言
+## 19. Java中如何引用本地语言
 
 可以用JNI（java native interface java 本地接口）接口 
 
-## Android里的Intent传递的数据有大小限制吗，如何解决？
+## 20. Android里的Intent传递的数据有大小限制吗，如何解决？
 
 Intent传递数据大小的限制大概在1M左右，超过这个限制就会静默崩溃。处理方式如下：
 
 -   进程内：EventBus，文件缓存、磁盘缓存。
     
--   进程间：通过ContentProvider进行款进程数据共享和传递。
+-   进程间：通过ContentProvider进行跨进程数据共享和传递。
   
-## MVC设计模式  
+## 21. MVC设计模式  
   
 <font color=#0099ff size=4 face="黑体">MVC模式的结构分为三部分，实体层的Model，视图层的View，以及控制层的Controller</font>  
 ![sunst](https://segmentfault.com/image?src=http://7xih5c.com1.z0.glb.clouddn.com/15-10-11/13126761.jpg&objectId=1190000003927200&token=9cdd1d129e9862fa016f2c48560187c9)  
@@ -188,17 +218,18 @@ Intent传递数据大小的限制大概在1M左右，超过这个限制就会静
   
 例如：View层接受用户的输入，然后通过Controller修改对应的Model实例；同时，当Model实例的数据发生变化的时候，需要修改UI界面，可以通过Controller更新界面；View层也可以直接更新Model实例的数据  
   
-## ***MVP设计模式  
+## ***22. MVP设计模式  
   
-### 1. 引入的场景  
+### 引入的场景  
   
 MVP模式是MVC模式在Android上的一种变种，在Android的架构中Activity,Fragment布局的xml相当于View。实际的开发过程中，Activity和Fragment占据了大部分的开发工作，这就导致了在实际开发中View层太过耦合，一不小心，几次代码迭代过后，一个Activity或者Fragment中的代码就有几千行，有时候修改个功能在笨重的代码中摸爬滚打半天才找到关键点，对于不熟悉代码的开发者来说（或者接手前人编写代码的质量过低）维护起来及其困难，所以将视图和业务逻辑代码分开势在必行  
   
-Google在Github上开源的<font color=#0099ff size=4 face="黑体">[todo-mvp](https://github.com/googlesamples/android-architecture/tree/todo-mvp/)</font>项目就是MVP的前身。这种设计模式（或者说代码结构）专门是为优化Activity和Fragment的代码而产生的，但是并不一定这个模式就非常好，只不过有它的好处的初衷：  
+Google在Github上开源的<font color=#0099ff size=4 face="黑体">[todo-mvp](https://github.com/googlesamples/android-architecture/tree/todo-mvp/)</font>项目就是MVP的前身。这种设计模式（或者说代码结构）专门是为优化Activity和Fragment的代码而产生的，但这个模式并不就说一定就非常好，只不过有它的好处的初衷：  
+
   
-想让结构更加的清晰，逻辑耦合度降低  
+>想让代码结构更加的清晰，逻辑耦合度降低  
   
-### 2. MVP的介绍  
+### MVP的介绍  
 MVP 全称是Model - View - Presenter ，是模型(model)－视图(view)－呈现器(presenter)的缩写  
 ![susnt](https://segmentfault.com/image?src=http://7xih5c.com1.z0.glb.clouddn.com/15-10-11/2114527.jpg&objectId=1190000003927200&token=090ab9129b52d861300a716ee4d9180c)  
 >* <b>Model：</b><font color=#dd0000 size=4 face="黑体">业务逻辑和数据处理(数据库存储操作，网络数据请 求，复杂算法，耗时操作)</font>  
@@ -211,7 +242,7 @@ MVP 全称是Model - View - Presenter ，是模型(model)－视图(view)－呈�
   
 > MVP把Activity中的UI逻辑抽象成View接口，把业务逻辑抽象成Presenter接口，Presenter是Model和View之间的桥梁  
   
-### 3. MVP作用  
+### MVP作用  
   
 -   分离了视图逻辑和业务逻辑，降低了耦合  
   
@@ -237,7 +268,7 @@ MVP 全称是Model - View - Presenter ，是模型(model)－视图(view)－呈�
   
 MVP中，由于业务逻辑都在Presenter里，我们完全可以写一个PresenterTest的实现类继承Presenter的接口，现在只要在Activity里把Presenter的创建换成PresenterTest，就能进行单元测试了，测试完再换回来即可。万一发现还得进行测试，那就再换成PresenterTest吧。  
   
-#### （3）避免 Activity 的内存泄露  
+#### ***（3）避免 Activity 的内存泄露  
   
 Android APP 发生OOM的最大原因就是出现内存泄露造成APP的内存不够用，而造成内存泄露的两大原因之一就是Activity泄露（Activity Leak）（另一个原因是Bitmap泄露（Bitmap Leak））  
   
@@ -249,7 +280,7 @@ Activity是有生命周期的，用户随时可能切换Activity，当APP的内�
   
 采用MVP模式，只要在当前的Activity的onDestroy里，分离异步任务对Activity的引用，就能避免 Activity Leak。  
   
-### 3. MVP使用示例  
+### MVP使用示例  
 以最常用的网络数据请求为例  
   
 先来明确下MVP中各个环节的责任划分，然后照此进行代码布局  
@@ -445,7 +476,7 @@ public class Presenter implements IPresenter, Model.LoadDataCallback {
 ```  
 大家要多看，多试验，最重要的是**理解思路**，Google官方的MVP代码大家可以去研读一下，是同一个模式，只不过它把好多接口集成在一个接口文件中，防止代码碎片化，大家研读时记住这一点，就不会困惑了。  
   
-## ListView的优化方案  
+## 23. ListView的优化方案  
   
 1、如果自定义适配器，那么在getView方法中要考虑方法传进来的参数contentView是否为null，如果为null就创建contentView并返回，如果不为null则直接使用。在这个方法中尽可能少创建view  
   
@@ -453,22 +484,27 @@ public class Presenter implements IPresenter, Model.LoadDataCallback {
   
 3、如果listview需要显示的item很多，就要考虑分页加载。比如一共要显示100条或者更多的时候，我们可以考虑先加载20条，等用户拉到列表底部的时候再去加载接下来的20条  
   
-Tips：ListView已经过时了，现在使用RecycleView替代，RecycleView不仅能替代ListView还能替代GridView  
+  <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
+>ListView已经过时了，现在使用RecycleView替代，RecycleView不仅能替代ListView还能替代GridView  
   
-这里推荐一下我的两篇关于RecycleView的内容，你可以通过an系列框架快速集成非常绚丽的RecycleView，欢迎关注我的[知乎qy](https://www.zhihu.com/people/qydq/)  
+这里推荐一下我的两篇关于RecycleView的内容，你可以通过an系列框架快速集成非常绚丽的RecycleView，请一定要关注我的[知乎](https://www.zhihu.com/people/qydq/)  
   
 * [RecyclerView解析之下拉刷新与上拉加载SwipeRefreshLayout（含分割线工具类）](https://zhuanlan.zhihu.com/p/22362839)  
   
 * [ViewPager,RecyclerView,SrollView嵌套事件冲突解决](https://zhuanlan.zhihu.com/p/32748913)  
   
-## ***Android的数据存储方式  
+## ***24. Android的数据存储方式  
+> * SharedPreferences存储； 
+> * 文件存储； 
+> * SQLite数据库存储； 
+> * ContentProvider存储； 
+> * 网络存储
+
+Preference，File， DataBase这三种方式分别对应的目录是`/data/data/Package Name/Shared_Pref`,
+`/data/data/Package Name/files`,
+`/data/data/Package Name/database`
   
-  
-使用SharedPreferences存储；文件存储；SQLite数据库存储；ContentProvider存储；网络存储  
-  
-Preference，File， DataBase这三种方式分别对应的目录是/data/data/Package Name/Shared_Pref, /data/data/Package Name/files, /data/data/Package Name/database  
-  
-### 1. 使用SharedPreferences存储数据  
+### （1）使用SharedPreferences存储数据  
   
 首先说明SharedPreferences存储方式，它是 Android提供的用来存储一些简单配置信息的一种机制，例如：登录用户的用户名与密码。其采用了Map数据结构来存储数据，以键值的方式存储，可以简单的读取与写入，具体实例如下：  
 #### sp写数据  
@@ -489,9 +525,8 @@ time = user getString(“time” ,"永远");
 数据读取与写入的方法都非常简单，只是在写入的时候有些区别：先调用edit()使其处于编辑状态，然后才能修改数据，最后使用commit()提交修改的数据。实际上SharedPreferences是采用了XML格式将数据存储到设备中，在DDMS中的File Explorer中的/data/data/<package name>/shares_prefs下  
   
 >使用SharedPreferences是有些限制的：只能在同一个包内使用，不能在不同的包之间使用。  
-  
-  
-### 2. 文件存储数据  
+
+### （2）文件存储数据  
   
 文件存储方式是一种较常用的方法，在Android中读取/写入文件的方法，与 Java中实现I/O的程序是完全一样的，提供了openFileInput()和openFileOutput()方法来读取设备上的文件。具体实例如下:  
   
@@ -501,17 +536,17 @@ time = user getString(“time” ,"永远");
   
 `FileOutputStream fos = openFileOutput(fn,Context.MODE_PRIVATE);`  
   
-### 3. 网络存储数据  
+### （3）网络存储数据  
   
 网络存储方式，需要与Android 网络数据包打交道，关于Android 网络数据包的详细说明，请阅读Android SDK引用了Java SDK的哪些package？。  
   
-### 4. ContentProvider  
+### （4）ContentProvider  
   
-1、ContentProvider简介  
+#### 1、ContentProvider简介  
   
 当应用继承ContentProvider类，并重写该类用于提供数据和存储数据的方法，就可以向其他应用共享其数据。虽然使用其他方法也可以对外共享数据，但数据访问方式会因数据存储的方式而不同，如：采用文件方式对外共享数据，需要进行文件操作读写数据；采用sharedpreferences共享数据，需要使用sharedpreferences API读写数据。而使用ContentProvider共享数据的好处是统一了数据访问方式。  
   
-2、Uri类简介  
+#### 2、Uri类简介  
   
 Uri代表了要操作的数据，Uri主要包含了两部分信息：1.需要操作的ContentProvider ，2.对ContentProvider中的什么数据进行操作，一个Uri由以下几部分组成：  
   
@@ -534,7 +569,7 @@ Uri代表了要操作的数据，Uri主要包含了两部分信息：1.需要操
   
 Uri uri = Uri.parse("content://com.changcheng.provider.contactprovider/contact")  
   
-3、UriMatcher、ContentUrist和ContentResolver简介  
+#### 3、UriMatcher、ContentUrist和ContentResolver简介  
   
 因为Uri代表了要操作的数据，所以我们很经常需要解析Uri，并从 Uri中获取数据。Android系统提供了两个用于操作Uri的工具类，分别为UriMatcher 和ContentUris 。掌握它们的使用，会便于我们的开发工作。  
   
@@ -564,9 +599,9 @@ parseId(uri)方法用于从路径中获取ID部分
   
 ContentResolver：当外部应用需要对ContentProvider中的数据进行添加、删除、修改和查询操作时，可以使用 ContentResolver 类来完成，要获取ContentResolver 对象，可以使用Activity提供的getContentResolver()方法。 ContentResolver使用insert、delete、update、query方法，来操作数据。  
   
-## ***Activity的启动过程（不要回答生命周期）  
+## ***25. Activity的启动过程（不要回答生命周期）  
   
-[http://blog.csdn.net/luoshengyang/article/details/6689748](http://blog.csdn.net/luoshengyang/article/details/6689748)  
+[Android启动过程远吗分析](http://blog.csdn.net/luoshengyang/article/details/6689748)  
   
 在Android系统中，Activity和Service是应用程序的核心组件，它们以松藕合的方式组合在一起构成了一个完整的应用程序，这得益于应用程序框架层框架层提供了一套完整的机制来协助应用程序启动这些Activity和Service，以及提供Binder机制帮助它们相互间进行通信  
   
@@ -574,6 +609,7 @@ ContentResolver：当外部应用需要对ContentProvider中的数据进行添�
    
 无论是通过点击应用程序图标来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都要借助于应用程序框架层的ActivityManagerService服务进程
   <font color=#0099ff size=4 face="黑体">Tips:</font>
+
 >Service也是由ActivityManagerService进程来启动的。在Android应用程序框架层中，ActivityManagerService是一个非常重要的接口，它不但负责启动Activity和Service，还负责管理Activity和Service  
 >
 ![enter image description here](http://hi.csdn.net/attachment/201108/14/0_1313305334OkCc.gif)
@@ -595,7 +631,7 @@ ContentResolver：当外部应用需要对ContentProvider中的数据进行添�
   
 这样，Android应用程序的Activity启动过程就启动起来了  
   
-## ***Android进程间通信IPC机制Binder简单介绍  
+## ***26. Android进程间通信IPC机制Binder简单介绍  
 在Android系统中，每一个应用程序都是由一些Activity和Service组成的，这些Activity和Service有可能运行在同一个进程中，也有可能运行在不同的进程中,那么，不在同一个进程的Activity或者Service是如何通信的呢？  
   
 Binder是一种进程间通信机制，它是一种类似于COM和CORBA分布式组件架构，通俗一点，其实是提供远程过程调用RPC(Remote Procedure Call)功能。从英文字面上意思看，Binder具有粘结剂的意思，那么它把什么东西粘结在一起呢？  
@@ -621,19 +657,19 @@ Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，�
  *  5. Service Manager是一个守护进程，用来管理Server，并向Client提供查询Server接口的能力  
   
 至此，对Binder机制总算是有了一个感性的认识，但仍然感到不能很好地从上到下贯穿整个IPC通信过程，推荐下面四个情景，分析Binder源代码的文章，以进一步理解Binder机制  
-  
-[1. Service Manager是如何成为一个守护进程的？即Service Manager是如何告知Binder驱动程序它是Binder机制的上下文管理者](http://blog.csdn.net/luoshengyang/article/details/6621566)  
- [2. Server和Client是如何获得Service Manager接口的？即defaultServiceManager接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6627260)  
- [3. Server是如何把自己的服务启动起来的？Service Manager在Server启动的过程中是如何为Server提供服务的？即IServiceManager::addService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6629298)  
-[4.  Service Manager是如何为Client提供服务的？即IServiceManager::getService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6633311)  
-  
-## ***Android 进程间通信的几种实现方式  
+
+> * [1. Service Manager是如何成为一个守护进程的？即Service
+> Manager是如何告知Binder驱动程序它是Binder机制的上下文管理者](http://blog.csdn.net/luoshengyang/article/details/6621566)
+> * [2. Server和Client是如何获得Service
+> Manager接口的？即defaultServiceManager接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6627260)
+> * [3. Server是如何把自己的服务启动起来的？Service
+> Manager在Server启动的过程中是如何为Server提供服务的？即IServiceManager::addService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6629298)
+> * [4.  ServiceManager是如何为Client提供服务的？即IServiceManager::getService接口是如何实现的](http://blog.csdn.net/luoshengyang/article/details/6633311)
+## ***28. Android 进程间通信的几种实现方式  
   
 [# Android进程间通信 - 几种方式的对比总结](https://blog.csdn.net/hzw2017/article/details/81275438)  
   
 [# Android面试收集录14 Android进程间通信方式](https://www.cnblogs.com/Jason-Jan/p/8459687.html)  
-  
-  
 ### 什么是RPC  
 RPC（Remote Procedure Call）即远程过程调用，它是一种通过网络从远程计算机程序上请求服务，在不需要了解底层网络技术的协议下，即可获取计算机进程中的数据  
   
@@ -696,13 +732,13 @@ AIDL Service和Content Provider类似，也可以访问其他应用程序中的�
 #### （6）Socket（网络）   
 [Android进程间通信 - Socket使用（TCP、UDP）](https://blog.csdn.net/hzw2017/article/details/81210979)  
 
-## 理解序列化吗，Android为什么引入Parcelable？
+## 29. 理解序列化吗，Android为什么引入Parcelable？
 
 所谓序列化就是将对象变成二进制流，便于存储和传输。  
 -   Serializable是java实现的一套序列化方式，可能会触发频繁的IO操作，效率比较低，适合将对象存储到磁盘上的情况。
     
 -   Parcelable是Android提供一套序列化机制，它将序列化后的字节流写入到一个共性内存中，其他对象可以从这块共享内存中读出字节流，并反序列化成对象。因此效率比较高，适合在对象间或者进程间传递信息。
-## 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？  
+## 30. 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？  
 ### 描述：
 Android Service是运行在后台的代码，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序进程的上下文里。需要通过某一个Activity或者Context对象来调用
 
@@ -734,7 +770,7 @@ onStart() 只有采用Context.startService()方法启动服务时才会回调该
 onBind()只有采用Context.bindService()方法启动服务时才会回调该方法。该方法在调用者与服务绑定时被调用，当调用者与服务已经绑定，多次调用Context.bindService()方法并不会导致该方法被多次调用。onUnbind()只有调用Context.unbindService()方法启动服务时才会回调该方法。该方法在调用者与服务解除绑定时被调用
 ###
 
-## 注册广播有几种方式，这些方式有何优缺点？请谈谈Android引入广播机制的用意
+## 31. 注册广播有几种方式，这些方式有何优缺点？请谈谈Android引入广播机制的用意
 [http://www.jianshu.com/p/ea5e233d9f43](http://www.jianshu.com/p/ea5e233d9f43)  
 此处延伸：什么情况下用动态注册
 
@@ -765,19 +801,19 @@ registerReceiver(receiver.filter);
 |<b>静态注册</b> |`常驻型广播，不受组件生命周期影响，即便应用退出，广播还是可以被接收`            |非常驻型广播，跟随组件的生命变化，组件结束，广播结束。在组件结束前，需要先移除广播，否则容易造成内存泄漏            |  
 |Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
 
-### 广播发送和接收的原理
+###  广播发送和接收的原理
 1.  继承BroadcastReceiver，重写onReceive()方法。
 2.  通过Binder机制向ActivityManagerService注册广播。
 3.  通过Binder机制向ActivityMangerService发送广播。
 4.  ActivityManagerService查找符合相应条件的广播(IntentFilter/Permission)，将广播发送到BroadcastReceiver所在的消息队列中。
 5.  BroadcastReceiver所在消息队列拿到此广播后，回调它的onReceive()方法。
 
-## BroadcastReceiver与LocalBroadcastReceiver有什么区别？
+## 32. BroadcastReceiver与LocalBroadcastReceiver有什么区别？
 
 -   BroadcastReceiver 是跨应用广播，利用Binder机制实现。
     
 -   LocalBroadcastReceiver 是应用内广播，利用Handler实现，利用了IntentFilter的match功能，提供消息的发布与接收功能，实现应用内通信，效率比较高。
-## **Service和Thread的区别？
+## ***33. Service和Thread的区别？
 
 Servie是系统的组件，它由系统进程托管（servicemanager）；它们之间的通信类似于client和server，是一种轻量级的ipc通信，这种通信的载体是binder，它是在linux层交换信息的一种ipc。而thread是由本应用程序托管。
 1). Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
@@ -790,7 +826,7 @@ Servie是系统的组件，它由系统进程托管（servicemanager）；它们
 
 因此你可以把 Service 想象成一种消息服务，而你可以在任何有 Context 的地方调用 Context.startService、Context.stopService、Context.bindService，Context.unbindService，来控制它，你也可以在 Service 里注册 BroadcastReceiver，在其他地方通过发送 broadcast 来控制它，当然这些都是 Thread 做不到的。
 
-## 描述一下View的绘制原理？
+## 34. 描述一下View的绘制原理？
 View的绘制流程主要分为三步：
 
 1.  onMeasure：测量视图的大小，从顶层父View到子View递归调用measure()方法，measure()调用onMeasure()方法，onMeasure()方法完成绘制工作。
@@ -805,55 +841,59 @@ View的绘制流程主要分为三步：
 （2）http://blog.csdn.net/yanbober/article/details/50577855
 
 
-## JAVA注解反射原理是什么
+## 35. JAVA注解反射原理是什么
 可以看我知乎
 
-## Java GC原理
+## 36. Java GC原理
 
 参考：http://www.jianshu.com/p/d75a32ac5bed?
 
 
 
-## 设计模式
-
+## 37. 设计模式
 
 
 参考：http://gold.xitu.io/entry/56ebb4ad5bbb50004c440972
 
-## RxJava
+## 38. RxJava
 
 http://gank.io/post/560e15be2dca930e00da1083?from=timeline&isappinstalled=0#toc_1
 
-## Http Https
+## 39. 介绍Http和Https的区别
 
 http://www.jianshu.com/p/93fdebe5fef1
 
-## 为什么要用ContentProvider？它和sql的实现上有什么差别？
-屏蔽数据存储的细节,对用户透明,用户只需要关心操作数据的uri就可以了,对应的参数 .
+## 40.String,StringBuffer,StringBuilder的区别
+本人知乎
 
-## Android UI中的View如何刷新。
+[浅论String,StringBuffer,StringBuilder的区别](https://zhuanlan.zhihu.com/p/27323462)
+
+## 41. 为什么要用ContentProvider？它和sql的实现上有什么差别？
+ContentProvider可以像数据库一样进行选择排序，屏蔽内部数据的存储细节，向外提供统一的接口模型，用户只需要关心操作数据的uri就可以了，大大简化上层应用，对数据的整合提供了更方便的途径。
+
+## 42. Android UI中的View如何刷新？
 
 Android中对View的更新方式有很多种，使用时要区分不同的应用场合。要分清的是：多线程和双缓冲。
 
-1、不使用多线程和双缓冲
+ - 1、不使用多线程和双缓冲
 
 这种情况最简单，一般只希望View在发生改变时对UI进行重绘。你只需要Activity中显式调用View对象中的invalidate()方法即可。系统会自动调用View的onDraw()方法。
 
-2、使用多线程和不使用双缓冲
+ - 2、使用多线程和不使用双缓冲
 
-这种情况下需要开启新的线程，新开的线程就不好访问View对象了。强行访问的话会报错：android.view.ViewRoot$ CalledFromWrongThreadException: only theoriginal thread that created a view hierarchy can touch its views。
+这种情况下需要开启新的线程，新开的线程就不好访问View对象了。强行访问的话会报错：
 
-这时候你需要创建一个继承了android.os.handler的子类，并重写handleMessage方法。Android.os.Handle是能发送和处理消息的，你需要在Activity中发出更新UI的消息，然后再你的Handler(可以使用匿名内部类)中处理消息(因为匿名内部类可以访问父类变量，你可以直接调用View对象中的invalidate()方法。也就是说：在新线程中创建并发送一个Message，然后在主线程中捕获、处理该消息。
+    android.view.ViewRoot$ CalledFromWrongThreadException: only theoriginal thread that created a view hierarchy can touch its views
 
-  
+这时候你需要创建一个继承了android.os.handler的子类，并重写handleMessage方法。在Activity中发出更新UI的消息，然后再在你的Handler(可以使用匿名内部类)中处理消息(因为匿名内部类可以访问父类变量，你可以直接调用View对象中的invalidate()方法。
 
-3、使用多线程和双缓冲
+也就是说：
+>在新线程中创建并发送一个Message，然后在主线程中捕获、处理该消息
 
-Android的SurfaceView是View的子类，她同时也实现了双缓冲。你可以定义一个她的子类并实现Surfaceholder.Callback接口。由于SurfaceHolder.Callback接口，新线程就不要android.os.Handler帮忙了。SurfaceHolder中lockCanvas()方法可以锁定画布，绘制完新的图像后调用unlockCanvasand Post解锁。
+ - 3、使用多线程和双缓冲
 
-<font color=#0099ff size=4 face="黑体">失败是什么？没有什么，只是更走近成功一步；成功是什么？就是走过了所有通向失败的路，只剩下一条路，那就是成功的路。</font>
-
-## requestLayout()、invalidate()与postInvalidate()有什么区别？
+Android的SurfaceView是View的子类，同时也实现了双缓冲。你可以定义一个它的子类并实现Surfaceholder.Callback接口。由于SurfaceHolder.Callback接口，新线程就不要android.os.Handler帮忙了。SurfaceHolder中lockCanvas()方法可以锁定画布，绘制完新的图像后调用unlockCanvasand Post解锁。
+## 43. `requestLayout()`、`invalidate()`与`postInvalidate()`有什么区别？
 
 -   requestLayout()：该方法会递归调用父窗口的requestLayout()方法，直到触发ViewRootImpl的performTraversals()方法，此时mLayoutRequestede为true，会触发onMesaure()与onLayout()方法，不一定  
     会触发onDraw()方法。
@@ -861,11 +901,11 @@ Android的SurfaceView是View的子类，她同时也实现了双缓冲。你可�
 -   invalidate()：该方法递归调用父View的invalidateChildInParent()方法，直到调用ViewRootImpl的invalidateChildInParent()方法，最终触发ViewRootImpl的performTraversals()方法，此时mLayoutRequestede为false，不会  
     触发onMesaure()与onLayout()方法，当时会触发onDraw()方法。
     
--   postInvalidate()：该方法功能和invalidate()一样，只是它可以在非UI线程中调用。
+-   postInvalidate()：该方法功能和invalidate()一样，只是**它可以在非UI线程中调用**。
 
 一般说来需要重新布局就调用requestLayout()方法，需要重新绘制就调用invalidate()方法。
 
-## 了解APK的打包流程吗，描述一下？
+## 44. 了解APK的打包流程吗，描述一下？
 
 Android的包文件APK分为两个部分：代码和资源，所以打包方面也分为资源打包和代码打包两个方面
 具体说来：
@@ -882,9 +922,8 @@ Android的包文件APK分为两个部分：代码和资源，所以打包方面�
     
 6.  利用KeyStore对生成的APK文件进行签名。
     
-7.  如果是正式版的APK，还会利用ZipAlign工具进行对齐处理，对齐的过程就是将APK文件中所有的资源文件举例文件的起始距离都偏移4字节的整数倍，这样通过内存映射访问APK文件  
-    的速度会更快。
-## 如何做性能优化？
+7.  如果是正式版的APK，还会利用ZipAlign工具进行对齐处理，对齐过程就是将APK文件中所有的资源文件起始距离都偏移4字节的整数倍，这样通过内存映射访问APK文件的速度会更快。
+## 45. 如何做性能优化？
 
 1.  节制的使用Service，当启动一个Service时，系统总是倾向于保留这个Service依赖的进程，这样会造成系统资源的浪费，可以使用IntentService，执行完成任务后会自动停止。
     
@@ -895,7 +934,7 @@ Android的包文件APK分为两个部分：代码和资源，所以打包方面�
 4.  使用优化过的数据集合SparseArray代替HashMap，HashMap为每个键值都提供一个对象入口，使用SparseArray可以免去基本对象类型转换为引用数据类想的时间。
     
 
-## 如果防止过度绘制，如何做布局优化?
+## 46. 如果防止过度绘制，如何做布局优化?
 
 1.  使用include复用布局文件。
     
@@ -903,7 +942,7 @@ Android的包文件APK分为两个部分：代码和资源，所以打包方面�
     
 3.  使用stub标签仅在需要的时候在展示出来。
 
-## 如何提交代码质量？
+## 47. 如何提交代码质量？
 
 1.  避免创建不必要的对象，尽可能避免频繁的创建临时对象，例如在for循环内，减少GC的次数。
     
@@ -914,16 +953,25 @@ Android的包文件APK分为两个部分：代码和资源，所以打包方面�
 4.  对于基本数据类型和String类型的常量要使用static final修饰，这样常量会在dex文件的初始化器中进行初始化，使用的时候可以直接使用。
     
 5.  多使用系统API，例如数组拷贝System.arrayCopy()方法，要比我们用for循环效率快9倍以上，因为系统API很多都是通过底层的汇编模式执行的，效率比较高。
-## 没有遇到64k问题，为什么，如何解决?
+## 48. 有没有遇到64k问题，为什么，如何解决?
 
 -   在DEX文件中，method、field、class等的个数使用short类型来做索引，即两个字节（65535），method、field、class等均有此限制。
     
--   APK在安装过程中会调用dexopt将DEX文件优化成ODEX文件，dexopt使用LinearAlloc来存储应用信息，关于LinearAlloc缓冲区大小，不同的版本经历了4M/8M/16M的限制，超出  
-    缓冲区时就会抛出INSTALL_FAILED_DEXOPT错误。
+-   APK在安装过程中会调用dexopt将DEX文件优化成ODEX文件，dexopt使用LinearAlloc来存储应用信息。
+
+<font color=#0099ff size=4 face="微软雅黑"><b>Tips：</b></font>
+
+> 关于LinearAlloc缓冲区大小，不同的版本经历了4M/8M/16M的限制，超出缓冲区时就会抛出INSTALL_FAILED_DEXOPT错误。
     
 这个我没遇见过：回答解决方案就行了
 
-解决方案是Google的MultiDex方案，具体参见：配置方法数超过 64K 的应用。
+解决方案是Google的MultiDex方案，具体参见：配置方法数超过64K的应用。
+
+## 50. Android蓝牙技术
+
+本人知乎
+
+[android5.0 BLE 蓝牙4.0+浅析demo搜索（一）](https://zhuanlan.zhihu.com/p/23341414)
   
 ## UML diagrams  
   
@@ -1276,22 +1324,36 @@ super.onDestroy();
 }
 ```
 ### 2.  Android的事件分发机制？
- 本人知乎
+本人知乎：
+[Android事件分发机制完全解析，带你从源码的角度彻底理解](https://zhuanlan.zhihu.com/p/32686674)
+
 ### 3. Java有哪几种创建新线程的方法及区别
+[Java中创建线程主要有三种方式及其对比](https://zhuanlan.zhihu.com/p/32686674)
 ### 4.static修饰的方法可以被子类重写吗？为什么？
+[Java关键字static、final使用小结](https://blog.51cto.com/android/384614)
 ### 5.如何优化一个ListView
-参考上面一总结，这里补充高级
+
+参考上面优化ListView
+
+>listview的优化其实就是去找getView中的耗时操作，然后提取出来，要么使用异步的方式为item的布局加载数据，若需要同步，就只能在Adapter初始化时将数据准备好，然后再getView中只需绑定一下就行
+
 ### 6.那些情况会导致OOM?
-答: 导致内存泄露主要的原因是，先前申请了内存空间而忘记了释放。如果程序中存在无用对象的引用，那么这些对象就会驻留内存，消耗内存，因为无法让垃圾回收器GC验证这些对象是否不再需要。如果存在对象的引用，这个对象就被定义为“有效的活动”，同时不会被释放。要确定对象所占内存将被回收，我们就要确认该对象不会再被使用。典型的做法是把对象数据成员设为null或者从集合中移除该对象。当出现以下情况时，会造成内存泄露:
+导致内存泄露主要的原因是，先前申请了内存空间而忘记了释放。如果程序中存在无用对象的引用，那么这些对象就会驻留内存，消耗内存，因为无法让垃圾回收器GC验证这些对象是否不再需要。如果存在对象的引用，这个对象就被定义为“有效的活动”，同时不会被释放。要确定对象所占内存将被回收，我们就要确认该对象不会再被使用。典型的做法是把对象数据成员设为null或者从集合中移除该对象。当出现以下情况时，会造成内存泄露:（当然不止这些，面试嘛，随便说一两个即可）
 
-1、 数据库的cursor没有关闭。
+> 1、 数据库的cursor没有关闭
+> 2、 构造adapter时，没有使用缓存contentview
+> 3、 Bitmap对象不使用时，采用recycle()释放内存
+> 4、 Activity中的对象的生命周期大于activity
 
-2、 构造adapter时，没有使用缓存contentview。
+本人知乎：
 
-3、 Bitmap对象不使用时，采用recycle()释放内存。
-
-4、 Activity中的对象的生命周期大于activity。
+[# Android内存泄漏分析与解决办法-持新](https://zhuanlan.zhihu.com/p/32025826)
 ### 7.如何检测内存泄漏？有哪些工具？
 
 查找内存泄漏可以使用Android Profiler工具或者利用LeakCanary工具。
+
+具体可以看这一篇文章：
+[# Android中的内存泄露检测方案LeakCanary远离OOM](
+https://www.tuicool.com/articles/RvURJv)
 ### 8.用leak工具检测内存泄漏的原理是什么？
+[# LeakCanary 内存泄露监测原理研究](https://www.jianshu.com/p/5ee6b471970e)
