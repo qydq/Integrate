@@ -1,10 +1,13 @@
 [TOC]
+[toc]
+
+ [markdown-top](
+ https://blog.csdn.net/ryo1060732496/article/details/79208680)
 
 # Welcome to StackEdit!    
     
 Hi! I'm your  面试题，推荐看这篇文章：
 [https://blog.csdn.net/huangqili1314/article/details/72792682](https://blog.csdn.net/huangqili1314/article/details/72792682)
- 
  
 [我的知乎主页](https://www.zhihu.com/people/qydq)
   
@@ -40,7 +43,7 @@ Android是一个开源的操作系统，主要用于移动设备，比如手机�
  * [Android不同架构的机器有何不同？](https://blog.csdn.net/kester_/article/details/71055901)
 ## 2. Android系统架构  
 与其他操作系统一样，Android也采用分层的架构设计，从高到低分别是系统应用层（System Apps），Java API 框架层（Java API Framework），Android系统运行层（包括Android Runtime和Native C/C++ Libraries）、硬件抽象层（Hardware Abstraction Layer）、Linux内核层（Linux Kernel）。如下图所示：  
-![sunst](https://img-blog.csdn.net/20180912192908403?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NhbGFyeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)  
+![sunst](https://github.com/qydq/Integrate/blob/master/res/sunst_android_framework.png?raw=true)  
   
 下面由上至下分别介绍各层  
   
@@ -211,7 +214,7 @@ Intent传递数据大小的限制大概在1M左右，超过这个限制就会静
 ## 21. MVC设计模式  
   
 <font color=#0099ff size=4 face="黑体">MVC模式的结构分为三部分，实体层的Model，视图层的View，以及控制层的Controller</font>  
-![sunst](https://segmentfault.com/image?src=http://7xih5c.com1.z0.glb.clouddn.com/15-10-11/13126761.jpg&objectId=1190000003927200&token=9cdd1d129e9862fa016f2c48560187c9)  
+![sunst](https://github.com/qydq/Integrate/blob/master/res/sunst_android_mvc.png?raw=true)  
 -   View层其实就是程序的UI界面，用于向用户展示数据以及接收用户的输入  
 -   Model层就是JavaBean实体类，用于保存实例数据  
 -   Controller控制器用于更新UI界面和数据实例  
@@ -231,7 +234,7 @@ Google在Github上开源的<font color=#0099ff size=4 face="黑体">[todo-mvp](h
   
 ### MVP的介绍  
 MVP 全称是Model - View - Presenter ，是模型(model)－视图(view)－呈现器(presenter)的缩写  
-![susnt](https://segmentfault.com/image?src=http://7xih5c.com1.z0.glb.clouddn.com/15-10-11/2114527.jpg&objectId=1190000003927200&token=090ab9129b52d861300a716ee4d9180c)  
+![susnt](https://github.com/qydq/Integrate/blob/master/res/sunst_android_mvp.png?raw=true)  
 >* <b>Model：</b><font color=#dd0000 size=4 face="黑体">业务逻辑和数据处理(数据库存储操作，网络数据请 求，复杂算法，耗时操作)</font>  
 >* <b>View :</b> <font color=#dd0000 size=4 face="黑体">对应于Activity，负责View的绘制以及与用户交互</font>  
 >* <b>Presenter：</b><font color=#dd0000 size=4 face="黑体">负责完成View于Model间的交互 (有一点还需要注意，presenter是双向绑定的关系，因此，在设计的时候就要注意接口和抽象的使用，尽可能的降低代码的耦合度，这也是mvp的宗旨)</font>  
@@ -648,7 +651,7 @@ Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，�
 >Read The Fucking Source Code  
   
 总结一下，Android系统Binder机制中的四个组件Client、Server、Service Manager和Binder驱动程序的关系如下图所示  
-![Binder机制4组件关系图xixi](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554372529730&di=0aba86156694af5f93b30818f2adf7af&imgtype=0&src=http://qiangbo-workspace.oss-cn-shanghai.aliyuncs.com/2017-01-15-AndroidAnatomy_Binder/binder_servicemanager.png)  
+![Binder机制4组件关系图xixi](https://github.com/qydq/Integrate/blob/master/res/sunst_android_binder.jpeg?raw=true)  
   
  * 1. Client、Server和Service Manager实现在用户空间中，Binder驱动程序实现在内核空间中  
 * 2. Binder驱动程序和Service Manager在Android平台中已经实现，开发者只需要在用户空间实现自己的Client和Server  
@@ -674,7 +677,7 @@ Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，�
 RPC（Remote Procedure Call）即远程过程调用，它是一种通过网络从远程计算机程序上请求服务，在不需要了解底层网络技术的协议下，即可获取计算机进程中的数据  
   
 RPC使得开发包括网络分布式多程序在内的应用程序更加容易；RPC在OSI网络通信7层模型中，位于传输层与应用层之间，即位于会话层  
-![RPC位于OSI网络模型中的位置xixi](https://img-blog.csdn.net/2018072918504362?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6dzIwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)  
+![RPC位于OSI网络模型中的位置xixi](https://github.com/qydq/Integrate/blob/master/res/sunst_android_rpc.jpeg?raw=true)  
 ### 什么是IPC  
   
 IPC 即 Inter-Process Communication (进程间通信)，是指进程间数据交互的过程  
@@ -1357,3 +1360,53 @@ super.onDestroy();
 https://www.tuicool.com/articles/RvURJv)
 ### 8.用leak工具检测内存泄漏的原理是什么？
 [# LeakCanary 内存泄露监测原理研究](https://www.jianshu.com/p/5ee6b471970e)
+
+## 今日头条(一面)
+
+-   [Activity正常和异常情况下的生命周期](https://link.zhihu.com/?target=http%3A//blog.csdn.net/geekerhw/article/details/48749935)
+-   [Activity的四种启动模式](https://link.zhihu.com/?target=http%3A//blog.csdn.net/zhangjg_blog/article/details/10923643)
+-   [app如何保证后台服务不被杀死](https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000006251859%23articleHeader1)
+-   [IntentService比Service好在哪](https://link.zhihu.com/?target=http%3A//blog.qiji.tech/archives/2693)
+-   [如何优雅的展示Bitmap大图](https://link.zhihu.com/?target=http%3A//blog.csdn.net/guolin_blog/article/details/9316683)
+-   [Retrofit使用的注解是哪种注解？以及，注解的底层实现是怎样的](https://link.zhihu.com/?target=http%3A//wiki.jikexueyuan.com/project/java-reflection/java-at.html)
+-   [Thread和HandlerThread区别](https://link.zhihu.com/?target=http%3A//www.jianshu.com/p/5b6c71a7e8d7)
+-   [关于< include >< merge >< stub >三者的使用场景](https://link.zhihu.com/?target=http%3A//www.trinea.cn/android/layout-performance/)
+-   [Java是值传递还是引用传递](https://www.zhihu.com/question/31203609)
+-   [final和static关键字的区别](https://link.zhihu.com/?target=http%3A//android.blog.51cto.com/268543/384614/)
+-   [HashSet和HashMap的区别](https://link.zhihu.com/?target=http%3A//www.importnew.com/6931.html)
+-   [深拷贝和浅拷贝的区别](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/chenssy/p/3308489.html)
+-   [clone()的默认实现是深拷贝还是浅拷贝?如何让clone()实现深拷贝？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/zhangjg_blog/article/details/18369201)
+-   [动态代理和静态代理](https://link.zhihu.com/?target=http%3A//a.codekk.com/detail/Android/Caij/%25E5%2585%25AC%25E5%2585%25B1%25E6%258A%2580%25E6%259C%25AF%25E7%2582%25B9%25E4%25B9%258B%2520Java%2520%25E5%258A%25A8%25E6%2580%2581%25E4%25BB%25A3%25E7%2590%2586)
+-   [算法题：求二叉树第n层节点数](https://link.zhihu.com/?target=http%3A//blog.csdn.net/beitiandijun/article/details/41941211)
+-   [JVM的内存分布及垃圾回收机制](https://zhuanlan.zhihu.com/p/24191775)
+### 小米（一二面）
+
+一面问的很详细，二面也很深入，面试官态度也超好～
+
+-   [ThreadLocal的理解](https://link.zhihu.com/?target=http%3A//zhangbo-peipei-163-com.iteye.com/blog/2029216)
+-   [HashMap HashSet HashTable的区别？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/paincupid/article/details/47746341)
+-   [如何让HashMap可以线程安全？](https://link.zhihu.com/?target=http%3A//www.importnew.com/21396.html)
+-   [Android对HashMap做了优化后推出的新的容器类是什么？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/u010687392/article/details/47809295)
+-   [Java多线程之间如何通信](https://link.zhihu.com/?target=http%3A//blog.csdn.net/yulei_qq/article/details/8978456)
+-   [线程池的实现机制](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/dolphin0520/p/3932921.html)
+-   [RxJava中map和flatmap操作符的区别及底层实现](https://link.zhihu.com/?target=http%3A//gank.io/post/560e15be2dca930e00da1083)
+-   [对消息机制中Looper的理解](https://zhuanlan.zhihu.com/p/25222485))
+-   [Integer类对int的优化](https://link.zhihu.com/?target=http%3A//denverj.iteye.com/blog/745422)
+-   [单例模式有哪些实现方式](https://link.zhihu.com/?target=http%3A//www.blogjava.net/kenzhh/archive/2013/03/15/357824.html)
+-   [synchronized volatile关键字有什么区别？以及还有哪些同样功能的关键字](https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000004487149)
+-   [界面卡顿的原因有哪些？](https://link.zhihu.com/?target=http%3A//www.jianshu.com/p/1fb065c806e6)
+-   造成OOM/ANR 的原因？（同腾讯面试）
+-   [Activity与Fragment生命周期有何联系](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/purediy/p/3276545.html)
+-   [Activity与Fragment之间如何进行通信？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/u012702547/article/details/49786417)
+-   [RecyclerView与ListView缓存机制的不同](https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000007331249)
+## 阿里​
+-   操作系统进程间通信有哪些方法-（上面已总结）
+-   [谈谈对Socket的理解-本人知乎](https://zhuanlan.zhihu.com/p/62522151)
+-   [不同架构的机器有何不同（如x86等）]((https://blog.csdn.net/kester_/article/details/71055901))
+-   TCP/UDP比较
+-   什么时候会发生死锁
+-   操作系统层面上，线程可以加哪些锁
+-   算法题：求无序数组中的中位数
+-   二叉树深度算法
+-   android什么情况下会发生内存泄露（上面已总结）
+-   栈在系统中的方向是怎样的？为什么？
