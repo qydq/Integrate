@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.houbb</groupId>
-    <artifactId>markdown-toc</artifactId>
+    <artifactId>Integrate</artifactId>
     <version>1.0.5</version>
 
     <properties>

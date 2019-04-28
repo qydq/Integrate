@@ -1,3 +1,115 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Welcome to StackEdit!](#welcome-to-stackedit)
+- [让人眼前一亮的Android面试题集锦（持续更新）](#%E8%AE%A9%E4%BA%BA%E7%9C%BC%E5%89%8D%E4%B8%80%E4%BA%AE%E7%9A%84android%E9%9D%A2%E8%AF%95%E9%A2%98%E9%9B%86%E9%94%A6%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)
+  - [1. Android介绍](#1-android%E4%BB%8B%E7%BB%8D)
+  - [2. Android系统架构](#2-android%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84)
+    - [(1). 系统应用层](#1-%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8%E5%B1%82)
+    - [(2). Java API 框架层](#2-java-api-%E6%A1%86%E6%9E%B6%E5%B1%82)
+    - [(3). Android系统运行层](#3-android%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E5%B1%82)
+    - [(4). 硬件抽象层（Hardware Abstraction Layer）](#4-%E7%A1%AC%E4%BB%B6%E6%8A%BD%E8%B1%A1%E5%B1%82hardware-abstraction-layer)
+    - [(5). Linux内核层](#5-linux%E5%86%85%E6%A0%B8%E5%B1%82)
+  - [3. Android的四大组件是哪些，它们的作用](#3-android%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E6%98%AF%E5%93%AA%E4%BA%9B%E5%AE%83%E4%BB%AC%E7%9A%84%E4%BD%9C%E7%94%A8)
+  - [4. Activity的生命周期](#4-activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [5. 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？](#5-%E5%A6%82%E6%9E%9C%E5%90%8E%E5%8F%B0%E7%9A%84activity%E7%94%B1%E4%BA%8E%E6%9F%90%E5%8E%9F%E5%9B%A0%E8%A2%AB%E7%B3%BB%E7%BB%9F%E5%9B%9E%E6%94%B6%E4%BA%86%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A2%AB%E7%B3%BB%E7%BB%9F%E5%9B%9E%E6%94%B6%E4%B9%8B%E5%89%8D%E4%BF%9D%E5%AD%98%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81)
+  - [6. Activity的启动模式有哪些？是什么含义？](#6-activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%E6%98%AF%E4%BB%80%E4%B9%88%E5%90%AB%E4%B9%89)
+  - [7. 如何退出Activity？如何安全退出已调用多个Activity的Application？](#7-%E5%A6%82%E4%BD%95%E9%80%80%E5%87%BAactivity%E5%A6%82%E4%BD%95%E5%AE%89%E5%85%A8%E9%80%80%E5%87%BA%E5%B7%B2%E8%B0%83%E7%94%A8%E5%A4%9A%E4%B8%AAactivity%E7%9A%84application)
+  - [8. 请介绍下Android中常用的五种布局](#8-%E8%AF%B7%E4%BB%8B%E7%BB%8D%E4%B8%8Bandroid%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BA%94%E7%A7%8D%E5%B8%83%E5%B1%80)
+  - [9. Android中的动画有哪几类，它们的特点和区别是什么](#9-android%E4%B8%AD%E7%9A%84%E5%8A%A8%E7%94%BB%E6%9C%89%E5%93%AA%E5%87%A0%E7%B1%BB%E5%AE%83%E4%BB%AC%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [10. 什么情况会导致Force Close ？如何避免？能否捕获导致其的异常？](#10-%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%BC%9A%E5%AF%BC%E8%87%B4force-close-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E8%83%BD%E5%90%A6%E6%8D%95%E8%8E%B7%E5%AF%BC%E8%87%B4%E5%85%B6%E7%9A%84%E5%BC%82%E5%B8%B8)
+  - [11. 什么是ANR 如何避免它？](#11-%E4%BB%80%E4%B9%88%E6%98%AFanr-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%AE%83)
+  - [12. 运行时权限与文件系统权限的区别](#12-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [13. Android dvm的进程和Linux的进程, 应用程序的进程是否为同一个概念](#13-android-dvm%E7%9A%84%E8%BF%9B%E7%A8%8B%E5%92%8Clinux%E7%9A%84%E8%BF%9B%E7%A8%8B-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%BF%9B%E7%A8%8B%E6%98%AF%E5%90%A6%E4%B8%BA%E5%90%8C%E4%B8%80%E4%B8%AA%E6%A6%82%E5%BF%B5)
+  - [14. 什么是嵌入式实时操作系统, Android 操作系统属于实时操作系统吗?](#14-%E4%BB%80%E4%B9%88%E6%98%AF%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-android-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B1%9E%E4%BA%8E%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%97)
+  - [15. 一条最长的短信息约占多少byte?](#15-%E4%B8%80%E6%9D%A1%E6%9C%80%E9%95%BF%E7%9A%84%E7%9F%AD%E4%BF%A1%E6%81%AF%E7%BA%A6%E5%8D%A0%E5%A4%9A%E5%B0%91byte)
+  - [16. 如何将SQLite数据库(dictionary.db文件)与apk文件一起发布**](#16-%E5%A6%82%E4%BD%95%E5%B0%86sqlite%E6%95%B0%E6%8D%AE%E5%BA%93dictionarydb%E6%96%87%E4%BB%B6%E4%B8%8Eapk%E6%96%87%E4%BB%B6%E4%B8%80%E8%B5%B7%E5%8F%91%E5%B8%83)
+  - [17. 如何打开res aw目录中的数据库文件?](#17-%E5%A6%82%E4%BD%95%E6%89%93%E5%BC%80res-aw%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6)
+  - [18. DDMS和TraceView的区别?](#18-ddms%E5%92%8Ctraceview%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [19. Java中如何引用本地语言](#19-java%E4%B8%AD%E5%A6%82%E4%BD%95%E5%BC%95%E7%94%A8%E6%9C%AC%E5%9C%B0%E8%AF%AD%E8%A8%80)
+  - [20. Android里的Intent传递的数据有大小限制吗，如何解决？](#20-android%E9%87%8C%E7%9A%84intent%E4%BC%A0%E9%80%92%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9C%89%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6%E5%90%97%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3)
+  - [21. MVC设计模式](#21-mvc%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+  - [***22. MVP设计模式](#22-mvp%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+    - [引入的场景](#%E5%BC%95%E5%85%A5%E7%9A%84%E5%9C%BA%E6%99%AF)
+    - [MVP的介绍](#mvp%E7%9A%84%E4%BB%8B%E7%BB%8D)
+    - [MVP作用](#mvp%E4%BD%9C%E7%94%A8)
+      - [（1） Activity 代码变得更加简洁](#1-activity-%E4%BB%A3%E7%A0%81%E5%8F%98%E5%BE%97%E6%9B%B4%E5%8A%A0%E7%AE%80%E6%B4%81)
+      - [（2）方便进行单元测试](#2%E6%96%B9%E4%BE%BF%E8%BF%9B%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95)
+      - [***（3）避免 Activity 的内存泄露](#3%E9%81%BF%E5%85%8D-activity-%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2)
+    - [MVP使用示例](#mvp%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B)
+      - [Step 1/编写Model逻辑](#step-1%E7%BC%96%E5%86%99model%E9%80%BB%E8%BE%91)
+      - [Step 2/编写View逻辑](#step-2%E7%BC%96%E5%86%99view%E9%80%BB%E8%BE%91)
+      - [Step 3/编写presenter逻辑(重点关注)](#step-3%E7%BC%96%E5%86%99presenter%E9%80%BB%E8%BE%91%E9%87%8D%E7%82%B9%E5%85%B3%E6%B3%A8)
+  - [23. ListView的优化方案](#23-listview%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
+  - [***24. Android的数据存储方式](#24-android%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F)
+    - [（1）使用SharedPreferences存储数据](#1%E4%BD%BF%E7%94%A8sharedpreferences%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE)
+      - [sp写数据](#sp%E5%86%99%E6%95%B0%E6%8D%AE)
+      - [sp读数据](#sp%E8%AF%BB%E6%95%B0%E6%8D%AE)
+    - [（2）文件存储数据](#2%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE)
+    - [（3）网络存储数据](#3%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE)
+    - [（4）ContentProvider](#4contentprovider)
+      - [1、ContentProvider简介](#1contentprovider%E7%AE%80%E4%BB%8B)
+      - [2、Uri类简介](#2uri%E7%B1%BB%E7%AE%80%E4%BB%8B)
+      - [3、UriMatcher、ContentUrist和ContentResolver简介](#3urimatchercontenturist%E5%92%8Ccontentresolver%E7%AE%80%E4%BB%8B)
+  - [***25. Activity的启动过程（不要回答生命周期）](#25-activity%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E4%B8%8D%E8%A6%81%E5%9B%9E%E7%AD%94%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [***26. Android进程间通信IPC机制Binder简单介绍](#26-android%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1ipc%E6%9C%BA%E5%88%B6binder%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D)
+    - [什么是RPC](#%E4%BB%80%E4%B9%88%E6%98%AFrpc)
+    - [什么是IPC](#%E4%BB%80%E4%B9%88%E6%98%AFipc)
+      - [（1）Bundle （对应于四大组件）](#1bundle-%E5%AF%B9%E5%BA%94%E4%BA%8E%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6)
+      - [（2）文件共享](#2%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB)
+      - [（3）ContentProvider（基于Binder）](#3contentprovider%E5%9F%BA%E4%BA%8Ebinder)
+      - [（4）AIDL Service（基于Binder）](#4aidl-service%E5%9F%BA%E4%BA%8Ebinder)
+      - [（5）Messenger（基于Binder）](#5messenger%E5%9F%BA%E4%BA%8Ebinder)
+      - [（6）Socket（网络）](#6socket%E7%BD%91%E7%BB%9C)
+  - [29. 理解序列化吗，Android为什么引入Parcelable？](#29-%E7%90%86%E8%A7%A3%E5%BA%8F%E5%88%97%E5%8C%96%E5%90%97android%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BC%95%E5%85%A5parcelable)
+  - [30. 什么是Service以及描述下它的生命周期。Service有哪些启动方法，有什么区别，怎样停用Service？](#30-%E4%BB%80%E4%B9%88%E6%98%AFservice%E4%BB%A5%E5%8F%8A%E6%8F%8F%E8%BF%B0%E4%B8%8B%E5%AE%83%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fservice%E6%9C%89%E5%93%AA%E4%BA%9B%E5%90%AF%E5%8A%A8%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E6%80%8E%E6%A0%B7%E5%81%9C%E7%94%A8service)
+    - [描述：](#%E6%8F%8F%E8%BF%B0)
+    - [启动方法](#%E5%90%AF%E5%8A%A8%E6%96%B9%E6%B3%95)
+    - [生命周期](#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+    - [](#)
+  - [31. 注册广播有几种方式，这些方式有何优缺点？请谈谈Android引入广播机制的用意](#31-%E6%B3%A8%E5%86%8C%E5%B9%BF%E6%92%AD%E6%9C%89%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E8%BF%99%E4%BA%9B%E6%96%B9%E5%BC%8F%E6%9C%89%E4%BD%95%E4%BC%98%E7%BC%BA%E7%82%B9%E8%AF%B7%E8%B0%88%E8%B0%88android%E5%BC%95%E5%85%A5%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6%E7%9A%84%E7%94%A8%E6%84%8F)
+    - [注册广播方式](#%E6%B3%A8%E5%86%8C%E5%B9%BF%E6%92%AD%E6%96%B9%E5%BC%8F)
+    - [区别](#%E5%8C%BA%E5%88%AB)
+    - [广播发送和接收的原理](#%E5%B9%BF%E6%92%AD%E5%8F%91%E9%80%81%E5%92%8C%E6%8E%A5%E6%94%B6%E7%9A%84%E5%8E%9F%E7%90%86)
+  - [32. BroadcastReceiver与LocalBroadcastReceiver有什么区别？](#32-broadcastreceiver%E4%B8%8Elocalbroadcastreceiver%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [***33. Service和Thread的区别？](#33-service%E5%92%8Cthread%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [34. 描述一下View的绘制原理？](#34-%E6%8F%8F%E8%BF%B0%E4%B8%80%E4%B8%8Bview%E7%9A%84%E7%BB%98%E5%88%B6%E5%8E%9F%E7%90%86)
+  - [35. JAVA注解反射原理是什么](#35-java%E6%B3%A8%E8%A7%A3%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [36. Java GC原理](#36-java-gc%E5%8E%9F%E7%90%86)
+  - [37. 设计模式](#37-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+  - [38. RxJava](#38-rxjava)
+  - [39. 介绍Http和Https的区别](#39-%E4%BB%8B%E7%BB%8Dhttp%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [40.String,StringBuffer,StringBuilder的区别](#40stringstringbufferstringbuilder%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [41. 为什么要用ContentProvider？它和sql的实现上有什么差别？](#41-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8contentprovider%E5%AE%83%E5%92%8Csql%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%B7%AE%E5%88%AB)
+  - [42. Android UI中的View如何刷新？](#42-android-ui%E4%B8%AD%E7%9A%84view%E5%A6%82%E4%BD%95%E5%88%B7%E6%96%B0)
+  - [43. `requestLayout()`、`invalidate()`与`postInvalidate()`有什么区别？](#43-requestlayoutinvalidate%E4%B8%8Epostinvalidate%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [44. 了解APK的打包流程吗，描述一下？](#44-%E4%BA%86%E8%A7%A3apk%E7%9A%84%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%E5%90%97%E6%8F%8F%E8%BF%B0%E4%B8%80%E4%B8%8B)
+  - [45. 如何做性能优化？](#45-%E5%A6%82%E4%BD%95%E5%81%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
+  - [46. 如果防止过度绘制，如何做布局优化?](#46-%E5%A6%82%E6%9E%9C%E9%98%B2%E6%AD%A2%E8%BF%87%E5%BA%A6%E7%BB%98%E5%88%B6%E5%A6%82%E4%BD%95%E5%81%9A%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96)
+  - [47. 如何提交代码质量？](#47-%E5%A6%82%E4%BD%95%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F)
+  - [48. 有没有遇到64k问题，为什么，如何解决?](#48-%E6%9C%89%E6%B2%A1%E6%9C%89%E9%81%87%E5%88%B064k%E9%97%AE%E9%A2%98%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3)
+  - [50. Android蓝牙技术](#50-android%E8%93%9D%E7%89%99%E6%8A%80%E6%9C%AF)
+  - [UML diagrams](#uml-diagrams)
+  - [腾讯SNG（一二面）](#%E8%85%BE%E8%AE%AFsng%E4%B8%80%E4%BA%8C%E9%9D%A2)
+    - [1.Android Handler机制是做什么的，原理了解吗？](#1android-handler%E6%9C%BA%E5%88%B6%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%86%E8%A7%A3%E5%90%97)
+      - [消息机制的源码解析](#%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
+      - [1.Handler发送消息](#1handler%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF)
+      - [2.Looper获取消息](#2looper%E8%8E%B7%E5%8F%96%E6%B6%88%E6%81%AF)
+      - [Handler补充：](#handler%E8%A1%A5%E5%85%85)
+    - [2.  Android的事件分发机制？](#2--android%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6)
+    - [3. Java有哪几种创建新线程的方法及区别](#3-java%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B0%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E6%B3%95%E5%8F%8A%E5%8C%BA%E5%88%AB)
+    - [4.static修饰的方法可以被子类重写吗？为什么？](#4static%E4%BF%AE%E9%A5%B0%E7%9A%84%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
+    - [5.如何优化一个ListView](#5%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E4%B8%80%E4%B8%AAlistview)
+    - [6.那些情况会导致OOM?](#6%E9%82%A3%E4%BA%9B%E6%83%85%E5%86%B5%E4%BC%9A%E5%AF%BC%E8%87%B4oom)
+    - [7.如何检测内存泄漏？有哪些工具？](#7%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B7%A5%E5%85%B7)
+    - [8.用leak工具检测内存泄漏的原理是什么？](#8%E7%94%A8leak%E5%B7%A5%E5%85%B7%E6%A3%80%E6%B5%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [今日头条(一面)](#%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E4%B8%80%E9%9D%A2)
+    - [小米（一二面）](#%E5%B0%8F%E7%B1%B3%E4%B8%80%E4%BA%8C%E9%9D%A2)
+  - [阿里​](#%E9%98%BF%E9%87%8C%E2%80%8B)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [TOC]
 [toc]
 
@@ -849,14 +961,14 @@ View的绘制流程主要分为三步：
 
 ## 36. Java GC原理
 
-参考：http://www.jianshu.com/p/d75a32ac5bed?
+http://www.jianshu.com/p/d75a32ac5bed?
 
 
 
 ## 37. 设计模式
 
 
-参考：http://gold.xitu.io/entry/56ebb4ad5bbb50004c440972
+http://gold.xitu.io/entry/56ebb4ad5bbb50004c440972
 
 ## 38. RxJava
 
@@ -1353,7 +1465,7 @@ super.onDestroy();
 [# Android内存泄漏分析与解决办法-持新](https://zhuanlan.zhihu.com/p/32025826)
 ### 7.如何检测内存泄漏？有哪些工具？
 
-查找内存泄漏可以使用Android Profiler工具或者利用LeakCanary工具。
+查找内存泄漏可以使用Android Profiler工具或者LeakCanary工具。
 
 具体可以看这一篇文章：
 [# Android中的内存泄露检测方案LeakCanary远离OOM](
@@ -1390,7 +1502,7 @@ https://www.tuicool.com/articles/RvURJv)
 -   [Java多线程之间如何通信](https://link.zhihu.com/?target=http%3A//blog.csdn.net/yulei_qq/article/details/8978456)
 -   [线程池的实现机制](https://link.zhihu.com/?target=http%3A//www.cnblogs.com/dolphin0520/p/3932921.html)
 -   [RxJava中map和flatmap操作符的区别及底层实现](https://link.zhihu.com/?target=http%3A//gank.io/post/560e15be2dca930e00da1083)
--   [对消息机制中Looper的理解](https://zhuanlan.zhihu.com/p/25222485))
+-   [对消息机制中Looper的理解](https://zhuanlan.zhihu.com/p/25222485)
 -   [Integer类对int的优化](https://link.zhihu.com/?target=http%3A//denverj.iteye.com/blog/745422)
 -   [单例模式有哪些实现方式](https://link.zhihu.com/?target=http%3A//www.blogjava.net/kenzhh/archive/2013/03/15/357824.html)
 -   [synchronized volatile关键字有什么区别？以及还有哪些同样功能的关键字](https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000004487149)
@@ -1400,13 +1512,13 @@ https://www.tuicool.com/articles/RvURJv)
 -   [Activity与Fragment之间如何进行通信？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/u012702547/article/details/49786417)
 -   [RecyclerView与ListView缓存机制的不同](https://link.zhihu.com/?target=https%3A//segmentfault.com/a/1190000007331249)
 ## 阿里​
--   操作系统进程间通信有哪些方法-（上面已总结）
+-   操作系统进程间通信有哪些方法-（已有）
 -   [谈谈对Socket的理解-本人知乎](https://zhuanlan.zhihu.com/p/62522151)
--   [不同架构的机器有何不同（如x86等）]((https://blog.csdn.net/kester_/article/details/71055901))
+-   [不同架构的机器有何不同（如x86等）](https://blog.csdn.net/kester_/article/details/71055901)
 -   TCP/UDP比较
 -   什么时候会发生死锁
 -   操作系统层面上，线程可以加哪些锁
 -   算法题：求无序数组中的中位数
 -   二叉树深度算法
--   android什么情况下会发生内存泄露（上面已总结）
+-   android什么情况下会发生内存泄露（已有）
 -   栈在系统中的方向是怎样的？为什么？
