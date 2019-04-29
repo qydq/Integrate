@@ -11,7 +11,7 @@
     - [(3). Android系统运行层](#3-android%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E5%B1%82)
     - [(4). 硬件抽象层（Hardware Abstraction Layer）](#4-%E7%A1%AC%E4%BB%B6%E6%8A%BD%E8%B1%A1%E5%B1%82hardware-abstraction-layer)
     - [(5). Linux内核层](#5-linux%E5%86%85%E6%A0%B8%E5%B1%82)
-  - [3. Android中Context讲解](#3-android%E4%B8%ADcontext%E8%AE%B2%E8%A7%A3)
+  - [3. Android的Context](#3-android%E7%9A%84context)
   - [4. Android的四大组件是哪些，它们的作用](#4-android%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E6%98%AF%E5%93%AA%E4%BA%9B%E5%AE%83%E4%BB%AC%E7%9A%84%E4%BD%9C%E7%94%A8)
   - [5. Activity的生命周期](#5-activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
   - [6. 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？](#6-%E5%A6%82%E6%9E%9C%E5%90%8E%E5%8F%B0%E7%9A%84activity%E7%94%B1%E4%BA%8E%E6%9F%90%E5%8E%9F%E5%9B%A0%E8%A2%AB%E7%B3%BB%E7%BB%9F%E5%9B%9E%E6%94%B6%E4%BA%86%E5%A6%82%E4%BD%95%E5%9C%A8%E8%A2%AB%E7%B3%BB%E7%BB%9F%E5%9B%9E%E6%94%B6%E4%B9%8B%E5%89%8D%E4%BF%9D%E5%AD%98%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81)
@@ -200,7 +200,7 @@ Android平台提供的`Java框架API`将这些本地库中的一些功能展示�
 ### (5). Linux内核层  
 Android是基于Linux内核的（Linux内核提供了安全性、内存管理、进程管理、网络协议和驱动模型等核心系统服务），Linux内核层为各种硬件提供了驱动程序，如显示驱动、相机驱动、蓝牙驱动、电池管理等等 
 
-## 3. Android中Context讲解 
+## 3. Android的Context  
 [http://blog.csdn.net/lmj623565791/article/details/40481055](http://blog.csdn.net/lmj623565791/article/details/40481055) 
   
 ## 4. Android的四大组件是哪些，它们的作用  
