@@ -783,7 +783,7 @@ ContentResolver：当外部应用需要对ContentProvider中的数据进行添�
   
 Binder是一种进程间通信机制，它是一种类似于COM和CORBA分布式组件架构，通俗一点，其实是提供远程过程调用RPC(Remote Procedure Call)功能。从英文字面上意思看，Binder具有粘结剂的意思，那么它把什么东西粘结在一起呢？  
   
-在Android系统的Binder机制中，由一系统组件组成，分别是Client、Server、Service Manager和Binder驱动程序，  
+在Android系统中，Binder机制是由系统组件组成的，分别是Client、Server、Service Manager和Binder驱动程序，  
   
 >* Client、Server和Service Manager运行在用户空间；  
 >* Binder驱动程序运行内核空间  
@@ -963,7 +963,7 @@ registerReceiver(receiver.filter);
 需要发送一个自定义的广播来通知程序中其他组件一些状态
 
 #### 广播发送方式
- - 无序广播：通过`Context.sendBroadcast(Intent)`或`mContext.sendBroadcast(Intent,String)`方法发送。
+ - 无序广播：通过`Context.sendBroadcast(Intent)`或`Context.sendBroadcast(Intent,String)`方法发送。
  - 有序广播：通过`Context.sendOrderedBroadcast(Intent,String, BroadCastReceiver,Handler,int,String,Bundle)`方法发送。
 #### 发送广播区别
  - 无序广播：所有的接收者都会接收事件，不可以被拦截，不可以被修改。
