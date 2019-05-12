@@ -788,7 +788,7 @@ Binder是一种进程间通信机制，它是一种类似于COM和CORBA分布式
 >* Client、Server和Service Manager运行在用户空间；  
 >* Binder驱动程序运行内核空间  
   
-Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，核心组件便是Binder驱动程序了，Service Manager提供了辅助管理的功能，Client和Server正是在Binder驱动和Service Manager提供的基础设施上，进行Client-Server之间的通信。Service Manager和Binder驱动已经在Android平台中实现好，开发者只要按照规范实现自己的Client和Server组件就可以了。  
+Binder就是把这四个组件粘合在一起的粘结剂了，其中，核心组件便是Binder驱动程序了，Service Manager提供了辅助管理的功能，Client和Server正是在Binder驱动和Service Manager提供的基础设施上，进行Client-Server之间的通信。Service Manager和Binder驱动已经在Android平台中实现好，开发者只要按照规范实现自己的Client和Server组件就可以了。  
   
 说起来简单，做起难，对初学者来说，Android系统的Binder机制是最难理解的了，而Binder机制无论从系统开发还是应用开发的角度来看，都是Android系统中最重要的组成，因此，很有必要深入了解Binder的工作方式。要深入了解Binder的工作方式，最好的方式莫过于是阅读Binder相关的源代码了，Linux的鼻祖Linus Torvalds曾经曰过一句名言RTFSC：  
   
@@ -833,9 +833,9 @@ Binder就是一种把这四个组件粘合在一起的粘结剂了，其中，�
 > [Android面试收集录14-Android进程间通信方式](https://www.cnblogs.com/Jason-Jan/p/8459687.html)
 
 ### 什么是RPC  
-RPC（Remote Procedure Call）即远程过程调用，它是一种通过网络从远程计算机程序上请求服务，在不需要了解底层网络技术的协议下，即可获取计算机进程中的数据  
+RPC（Remote Procedure Call）即远程过程调用，它是一种通过网络，从远程计算机程序上请求服务，在不需要了解底层网络技术的协议下，即可获取计算机进程中的数据  
   
-RPC使得开发包括网络分布式多程序在内的应用程序更加容易；RPC在OSI网络通信7层模型中，位于传输层与应用层之间，即位于会话层  
+RPC使得开发包括网络分布式多程序在内的应用程序更加容易；RPC在OSI网络通信7层模型中，位于传输层与表示层之间，即位于会话层  
 ![RPC位于OSI网络模型中的位置xixi](https://github.com/qydq/Integrate/blob/master/res/sunst_android_rpc.jpeg?raw=true)  
 ### 什么是IPC  
   
@@ -853,7 +853,7 @@ Android底层是基于Linux，而Linux基于安全考虑，是不允许两个进
 >1. Activity，Service，Receiver 都支持在 Intent 中传递 Bundle 数据，而 Bundle 实现了 Parcelable 接口，可以在不同的进程间进行传输  
 >2. 在一个进程中启动了另一个进程的 Activity，Service 和 Receiver ，可以在 Bundle 中附加要传递的数据，通过 Intent 发送出去。  
   
-Example ：跨进程访问的Activity，例如，下面的代码可以直接调用拨打电话的Activity  
+Example ：跨进程访问的Activity，例如，直接调用拨打电话的Activity  
   
     Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:13570**4685");
     startActivity(callIntent);  
@@ -861,13 +861,13 @@ Example ：跨进程访问的Activity，例如，下面的代码可以直接调�
 [参考Android进程通信 - 序列化Serialzable与Parcelable中的示例](https://blog.csdn.net/hzw2017/article/details/80978663)  
   
 原理：  
->* 序列化是将对象转换成字节流，持久化保存在内存、文件、数据库中，序列化对象通过网络传输到其他客户端   
+>* 序列化是将对象转换成字节流，持久化保存在内存、文件、数据库中。也可以通过网络传输到其他客户端   
 >  
 >* 反序列化是将字节流转化成对象。 这样就可以通过文件共享实现进程通信  
   
 总结：  
   
-Serializable 和Parcelable都可以实现序列化进行数据传递。Serializable只需实现接口（保险点设置serialVersionUID值）即可，而Parcelable实现序列化使用则相对复杂些，当效率比Serializable高，Android底层做了相应的优化  
+Serializable和Parcelable都可以实现序列化进行数据传递。Serializable只需实现接口（保险点设置serialVersionUID值）即可，而Parcelable实现序列化使用则相对复杂些，当效率比Serializable高，Android底层做了相应的优化  
   
 <font color=#0099ff size=4 face="黑体">Tips：保存到SD卡、数据库或网络传输一般使用Serializable序列化，虽然效率低些，但使用很方便。   
 Intent、Bundle、Binder间的数据传递建议使用Parcelable，Android在这块做了内存序列化优化，效率高。</font>  
@@ -1066,7 +1066,7 @@ Android中对View的更新方式有很多种，使用时要区分不同的应用
 
  - 3、使用多线程和双缓冲
 
-Android的SurfaceView是View的子类，同时也实现了双缓冲。你可以定义一个它的子类并实现Surfaceholder.Callback接口。由于SurfaceHolder.Callback接口，新线程就不要android.os.Handler帮忙了。SurfaceHolder中lockCanvas()方法可以锁定画布，绘制完新的图像后调用unlockCanvasand Post解锁。
+Android的SurfaceView是View的子类，实现了双缓冲。你可以定义一个它的子类并实现SurfaceHolder.Callback接口，新线程就不要android.os.Handler帮忙了。SurfaceHolder中lockCanvas()方法可以锁定画布，绘制完新的图像后调用unlockCanvasand Post解锁。
 ## 49. `requestLayout()`、`invalidate()`与`postInvalidate()`有什么区别？
 
 -   requestLayout()：该方法会递归调用父窗口的requestLayout()方法，直到触发ViewRootImpl的performTraversals()方法，此时mLayoutRequestede为true，会触发onMesaure()与onLayout()方法，不一定  
@@ -1213,6 +1213,16 @@ C --> D
   
 爱的是你，自由也是你all of you
 
+## 61线程池了解吗，如何使用,原理了解吗？
+[Android中常见的4种线程池（保证你能看懂并理解）](https://blog.csdn.net/seu_calvin/article/details/52415337)
+[Android 线程池原理及使用](https://www.jianshu.com/p/7b2da1d94b42)
+
+## 62组件化，插件化
+https://blog.csdn.net/cmyperson/article/details/81199444
+
+## 63内存泄漏检测工具原理
+
+本人知乎有完整答案参考
 ---
 
 # 知名互联网公司面试题
