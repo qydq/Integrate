@@ -1360,8 +1360,10 @@ Executors.newScheduledThreadPool (5).scheduleAtFixedRate(r, 1000, 2000, TimeUnit
 
 ## 66. NFC简单总结
 NFC（Near Field Communication，近场通信）是一种数据传输技术。与Wi-Fi、蓝牙、红外线等数据传输技术的一个主要差异就是有效距离一般不能超过4厘米。但是NFC传输速度要比红外快。
+
 华为钱包NFC是内置于芯片里面的，可以通过NFC刷手机、完成坐公交，地铁，结账等点对点付款的场景。其它比如身份识别、门钥匙==，这里面就涉及到NFC通信技术##
 ### NFC的工作模式
+
 NFC支持如下3种工作模式：读卡器模式（Reader/writer mode）、仿真卡模式(Card Emulation Mode)、点对点模式（P2P mode）。
 
 （1）读卡器模式
@@ -1377,39 +1379,45 @@ NFC支持如下3种工作模式：读卡器模式（Reader/writer mode）、仿�
 
 
 差异性对比图：
-|对比项	| NFC	| 蓝牙	|  红外 |
-|--------------|----------------------------|------------------------|----------------------| 
-|网络类型	|点对点	|单点对多点	|点对点|
-|有效距离	|<=0.1m	|<=10m，最新的蓝牙4.0有效距离可达100m	|一般在1m以内，热技术连接，不稳定|
-|传输速度	|最大424kbps	最大24Mbps	|慢速115.2kbps，|快速4Mbps|
-|建立时间	|<0.1s	|6s	|0.5s|
-|安全性	|安全，硬件实现	|安全，软件实现	|不安全，使用IRFM时除外|
-|通信模式	|主动-主动/被动	|主动-主动	|主动-主动|
-|成本	|低|	中	|低|
+
+| 对比项	    | NFC	                | 蓝牙	                         | 红外                |
+|-----------|-----------------------|--------------------------------|----------------------------| 
+|网络类型	|点对点	                |单点对多点	                     |点对点                |
+|有效距离	|<=0.1m	                |<=10m，最新蓝牙4.0有效距离可达100m |一般在1m以内，热技术连接，不稳定|
+|传输速度	|最大424kbps	最大24Mbps	|慢速115.2kbp                     |快速4Mbps|                   
+|建立时间	|<0.1s	                |6s	                             |0.5s                       |
+|安全性	    |安全，硬件实现	        |安全，软件实现	                    |不安全，使用IRFM时除外|
+|通信模式	|主动-主动/被动	        |主动-主动	                        |主动-主动                  |
+|成本	    |低                     |	中	                            |低                         |
 
 Android对NFC的支持
 不同的NFC标签之间差异很大，有的只支持简单的读写操作，有时还会采用支持一次性写入的芯片，将NFC标签设计成只读的。当然，也存在一些复杂的NFC标签，例如，有一些NFC标签可以通过硬件加密的方式限制对某一区域的访问。还有一些标签自带操作环境，允许NFC设备与这些标签进行更复杂的交互。这些标签中的数据也会采用不同的格式。但Android SDK API主要支持NFC论坛标准（Forum Standard），这种标准被称为NDEF（NFC Data Exchange Format，NFC数据交换格式）。
 （1）NDEF数据的操作
 Android SDK API支持如下3种NDEF数据的操作：
 
-1）从NFC标签读取NDEF格式的数据。
-2）向NFC标签写入NDEF格式的数据。
-3）通过Android Beam技术将NDEF数据发送到另一部NFC设备。
+* 1）从NFC标签读取NDEF格式的数据。  
+* 2）向NFC标签写入NDEF格式的数据。  
+* 3）通过Android Beam技术将NDEF数据发送到另一部NFC设备。  
 
 用于描述NDEF格式数据的两个类：
 
-1）NdefMessage：描述NDEF格式的信息，实际上我们写入NFC标签的就是NdefMessage对象。
-2）NdefRecord：描述NDEF信息的一个信息段，一个NdefMessage可能包含一个或者多个NdefRecord。
+* 1）NdefMessage：描述NDEF格式的信息，实际上我们写入NFC标签的就是NdefMessage对象。
+* 2）NdefRecord：描述NDEF信息的一个信息段，一个NdefMessage可能包含一个或者多个NdefRecord。
 
 NdefMessage和NdefRecord是Android NFC技术的核心类，无论读写NDEF格式的NFC标签，还是通过Android Beam技术传递Ndef格式的数据，都需要这两个类。
+
 （2）非NDEF数据的操作
+
 对于某些特殊需求，可能要存任意的数据，对于这些数据，我们就需要自定义格式。这些数据格式实际上就是普通的字节流，至于字节流中的数据代表什么，就由开发人员自己定义了。
+
 （3）编写NFC程序的基本步骤
 
 Step 1: 设置权限，限制Android版本、安装的设备
+```
 <uses-sdk android:minSdkVersion="14"/>
 <user-permission android:name="android.permission.NFC"/>
 <uses-feature android:name="android.hardware.nfc" android:required="true"/>
+```
 Step 2:定义可接收Tag的Activity
 
 Activity清单需要配置一下launchMode属性：
@@ -1547,9 +1555,9 @@ public class RunAppActivity extends BaseNfcActivity{
 
 ```
 NFC标签贴近手机背面，自动写入数据，此时退出所有程序，返回桌面，然后再将NFC标签贴近手机背面，将会看到自动打开了“短信”。
-----------------------
 
-NFC标签让Android自动打开网页
+
+### NFC标签让Android自动打开网页
 
 首先我们创建一个NdefRecord，Android已经为我们提供好了这样的方法：
 ```
