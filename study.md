@@ -1260,6 +1260,7 @@ C --> D
 
 ## 61线程池了解吗，如何使用,原理了解吗？
 [Android中常见的4种线程池（保证你能看懂并理解）](https://blog.csdn.net/seu_calvin/article/details/52415337)
+
 [Android 线程池原理及使用](https://www.jianshu.com/p/7b2da1d94b42)
 
 ## 62组件化，插件化
