@@ -1592,7 +1592,7 @@ NFC标签贴近手机背面，自动写入数据，此时退出所有程序，�
 首先我们创建一个NdefRecord，Android已经为我们提供好了这样的方法：
 ```
 //直接接受一个Uri
-public NdefRecord createUri(String uriString);
+public NdefRecord createUri(String uriString);
 //接受一个Uri的对象
 public NdefRecord createUri(Uri uri);
 ```
