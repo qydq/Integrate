@@ -1291,9 +1291,9 @@ https://blog.csdn.net/cmyperson/article/details/81199444
 ## 65. Android中常见的4种线程池
 使用线程池能够给我们带来很多好处：
 
->1.通过线程池中线程的重用，减少创建和销毁线程的性能开销。
->2.能够控制线程池中的并发数，否则会因为大量的线程争夺CPU资源造成阻塞。
->3.线程池能够对线程进行管理，比如使用ScheduledThreadPool来设置N秒后执行任务，并且M毫秒循环执行一次。
+>1.通过线程池中线程的重用，减少创建和销毁线程的性能开销。  
+>2.能够控制线程池中的并发数，否则会因为大量的线程争夺CPU资源造成阻塞。  
+>3.线程池能够对线程进行管理，比如使用ScheduledThreadPool来设置N秒后执行任务，并且M毫秒循环执行一次。  
 
 Executor作为一个接口，它的具体实现就是ThreadPoolExecutor，android中的线程池都是直接或间接通过配置ThreadPoolExecutor来实现不同特性的线程池，下面看一下ThreadPoolExector的构造方法
 ```
@@ -1312,11 +1312,11 @@ BlockingQueue<Runnable> workQueue,
 ThreadFactory threadFactory
 ) 
 ```
-分析一下ThreadPoolExecutor执行任务时的过程是怎么样的，currentSize表示线程池中当前线程数量
-1.如果currentSize<corePoolSize，直接启动一个核心线程并执行任务
-2.如果currentSize>=corePoolSize，并且workQueue未满时，添加进来的任务会被安排到workQueue中等待执行
-3.workQueue已满，但是currentSize<maxmumPoolSize会立即开启一个非核心线程来执行任务
-4.当currentSize>corePoolSize，workQueue已满，currentSize>maximumPoolSize时，调用Handler默认抛出RejectExecutionException异常
+分析一下ThreadPoolExecutor执行任务时的过程是怎么样的，currentSize表示线程池中当前线程数量  
+1.如果currentSize<corePoolSize，直接启动一个核心线程并执行任务  
+2.如果currentSize>=corePoolSize，并且workQueue未满时，添加进来的任务会被安排到workQueue中等待执行  
+3.workQueue已满，但是currentSize<maxmumPoolSize会立即开启一个非核心线程来执行任务  
+4.当currentSize>corePoolSize，workQueue已满，currentSize>maximumPoolSize时，调用Handler默认抛出RejectExecutionException异常  
 
 ThreadPoolExecutor是线程池的真正实现者，由此引出android中的4类具有不同特征的线程池，分别是：
 >FixThreadPool  
@@ -1324,7 +1324,7 @@ ThreadPoolExecutor是线程池的真正实现者，由此引出android中的4类
 >CacheThreadPool  
 >ScheduleThreadPool
 
-###FixThreadPool
+### FixThreadPool
 FixThreadPool只有核心线程，并且数量固定，也不会被回收，所有线程都活动时，因为队列没有大小限制，新任务会等待执行。由于线程不会被回收，FixThreadPool会很快响应外界请求
 具体使用：
 ```
@@ -1333,7 +1333,7 @@ public static ExecutorService newFixThreadPool(int nThreads){
 }
 Executor.newFixThreadPool(5).execute(r);
 ```
-###SingleThreadPool
+### SingleThreadPool
 SingleThreadPool只有一个核心线程，确保所任务都在同一线程按顺序完成，因此不需要处理线程同步的问题
 具体使用：
 ```
@@ -1342,7 +1342,7 @@ public static ExecutorService newSingleThreadPool (int nThreads){
 }
 Executors.newSingleThreadPool().execute(r);
 ```
-###CachedThreadPool
+### CachedThreadPool
 CachedThreadPool只有非核心线程，最大线程数非常大，所有线程都活动时，会为新任务创建新线程，否则利用空闲线程处理任务。
 
 Tips:
@@ -1359,7 +1359,7 @@ Tips:
 任务队列SynchronousQueue相当于一个空集合，导致任何任务都会被立即执行
 比较适合执行大量的耗时较少的任务
 
-###ScheduledThreadPool
+### ScheduledThreadPool
 4个里面唯一一个有延迟执行和周期重复执行的线程池
 ```
 public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize){
