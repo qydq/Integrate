@@ -1018,7 +1018,25 @@ http://gank.io/post/560e15be2dca930e00da1083?from=timeline&isappinstalled=0#toc_
 
 ## 43. 介绍Http和Https的区别
 
-http://www.jianshu.com/p/93fdebe5fef1
+参考：http://www.jianshu.com/p/93fdebe5fef1
+
+HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。
+
+HTTPS 和 HTTP 的区别
+超文本传输协议HTTP协议被用于在Web浏览器和服务器之间传递信息。
+
+HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此HTTP协议不适合传输一些敏感信息，比如信用卡号、密码等。
+为了解决HTTP协议的这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS。为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密。
+
+HTTPS和HTTP的区别主要为以下五点：
+
+* https 用的 443 端口， http 用的 80 端口
+* https协议需要到ca申请证书，一般免费证书很少，需要交费。
+* http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议。
+* http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。
+* http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
+
+
 ## 44. HttpClient与HttpUrlConnection的区别
 
 [http://blog.csdn.net/guolin_blog/article/details/12452307](http://blog.csdn.net/guolin_blog/article/details/12452307)
@@ -1365,16 +1383,23 @@ NFC（Near Field Communication，近场通信）是一种数据传输技术。�
 华为钱包NFC是内置于芯片里面的，可以通过NFC刷手机、完成坐公交，地铁，结账等点对点付款的场景。其它比如身份识别、门钥匙==，这里面就涉及到NFC通信技术##
 ### NFC的工作模式
 
-NFC支持如下3种工作模式：读卡器模式（Reader/writer mode）、仿真卡模式(Card Emulation Mode)、点对点模式（P2P mode）。
+NFC支持如下3种工作模式：
+
+* 1.读卡器模式（Reader/writer mode）
+* 2.仿真卡模式(Card Emulation Mode)
+* 3.点对点模式（P2P mode）
 
 （1）读卡器模式
+
 数据在NFC芯片中，可以简单理解成“刷标签”。本质上就是通过支持NFC的手机或其它电子设备从带有NFC芯片的标签、贴纸、名片等媒介中读写信息。通常NFC标签是不需要外部供电的。当支持NFC的外设向NFC读写数据时，它会发送某种磁场，而这个磁场会自动的向NFC标签供电。
 
 （2）仿真卡模式
+
 数据在支持NFC的手机或其它电子设备中，可以简单理解成“刷手机”。本质上就是将支持NFC的手机或其它电子设备当成借记卡、公交卡、门禁卡等IC卡使用。基本原理是将相应IC卡中的信息凭证封装成数据包存储在支持NFC的外设中 。
 在使用时还需要一个NFC射频器（相当于刷卡器）。将手机靠近NFC射频器，手机就会接收到NFC射频器发过来的信号，在通过一系列复杂的验证后，将IC卡的相应信息传入NFC射频器，最后这些IC卡数据会传入NFC射频器连接的电脑，并进行相应的处理（如电子转帐、开门等操作）。
 
 （3）点对点模式
+
 该模式与蓝牙、红外差不多，用于不同NFC设备之间进行数据交换，不过这个模式已经没有有“刷”的感觉了。其有效距离一般不能超过4厘米，但传输建立速度要比红外和蓝牙技术快很多，传输速度比红外块得多，如过双方都使用Android4.2，NFC会直接利用蓝牙传输。这种技术被称为Android Beam。所以使用Android Beam传输数据的两部设备不再限于4厘米之内。
 点对点模式的典型应用是两部支持NFC的手机或平板电脑实现数据的点对点传输，例如，交换图片或同步设备联系人。因此，通过NFC，多个设备如数字相机，计算机，手机之间，都可以快速连接，并交换资料或者服务。
 
@@ -1393,7 +1418,9 @@ NFC支持如下3种工作模式：读卡器模式（Reader/writer mode）、仿�
 
 Android对NFC的支持
 不同的NFC标签之间差异很大，有的只支持简单的读写操作，有时还会采用支持一次性写入的芯片，将NFC标签设计成只读的。当然，也存在一些复杂的NFC标签，例如，有一些NFC标签可以通过硬件加密的方式限制对某一区域的访问。还有一些标签自带操作环境，允许NFC设备与这些标签进行更复杂的交互。这些标签中的数据也会采用不同的格式。但Android SDK API主要支持NFC论坛标准（Forum Standard），这种标准被称为NDEF（NFC Data Exchange Format，NFC数据交换格式）。
+
 （1）NDEF数据的操作
+
 Android SDK API支持如下3种NDEF数据的操作：
 
 * 1）从NFC标签读取NDEF格式的数据。  
@@ -1474,7 +1501,9 @@ public class BaseNfcActivity extends AppCompatActivity {
 注意：通常来说，所有处理NFC的Activity都要设置launchMode属性为singleTop或者singleTask，保证了无论NFC标签靠近手机多少次，Activity实例只有一个。
 
 
-向NFC标签写入数据一般分为三步：
+Step 3:向NFC标签写入数据
+
+一般分为三步：
 
 1）获取Tag对象
 ```
@@ -1488,7 +1517,7 @@ Ndef ndef = Ndef.get(tag);
 ```
 ndef.writeNdefMessage(ndefMessage);
 ```
-完整代码
+完整代码参考
 ```
 public class RunAppActivity extends BaseNfcActivity{
     private String mPackageName = "com.android.mms";//短信
@@ -1563,9 +1592,9 @@ NFC标签贴近手机背面，自动写入数据，此时退出所有程序，�
 首先我们创建一个NdefRecord，Android已经为我们提供好了这样的方法：
 ```
 //直接接受一个Uri
-public NdefRecord createUri(String uriString); 
+public NdefRecord createUri(String uriString);
 //接受一个Uri的对象
-public NdefRecord createUri(Uri uri);  
+public NdefRecord createUri(Uri uri);
 ```
 实现代码对比上面-利用NFC标签让Android自动运行程序-只是修改了writeNFCTag方法中
 ```
