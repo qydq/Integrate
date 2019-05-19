@@ -2090,6 +2090,22 @@ java中方法参数传递方式是按值传递。
 一面问的很详细，二面也很深入，面试官态度也超好～
 
 -   [ThreadLocal的理解](https://link.zhihu.com/?target=http%3A//zhangbo-peipei-163-com.iteye.com/blog/2029216)
+
+很多时候我们还是会认为ThreadLocal是为了解决线程安全的问题而设计的,线程安全问题产生的两个前提条件：
+>1. 数据共享。多个线程访问同样的数据。   
+>2. 共享数据是可变的。多个线程对访问的共享数据作出了修改。   
+
+一般的我们要解决线程安全，利用synchronized关键字将修改对象值的地方和输出的地方上锁。让这段代码在某一个时间段内始终只有一个线程在执行。
+
+>以上结果肯定是线程安全
+
+如果ThreadLocal是为了解决线程安全设计的，那么使用ThreadLocal同样会是上面的效果，但是结果却不是。
+
+总结：
+
+ThreadLocal里面保存一个线程共享的变量，对于该变量来讲是线程不安全的。
+如果ThreadLocal保存的本身就是一个私有的，不共享的变量的话，当然是线程安全的
+
 -   [HashMap HashSet HashTable的区别？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/paincupid/article/details/47746341)
 -   [如何让HashMap可以线程安全？](https://link.zhihu.com/?target=http%3A//www.importnew.com/21396.html)
 -   [Android对HashMap做了优化后推出的新的容器类是什么？](https://link.zhihu.com/?target=http%3A//blog.csdn.net/u010687392/article/details/47809295)
