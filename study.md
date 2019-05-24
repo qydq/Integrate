@@ -1107,6 +1107,12 @@ View的绘制流程主要分为三步：
 
 这是我在面试中被问到的，同以上有所区别，问法不一样的，下面描述一下：我们的Activity是如何绘制的
 
+![sunst](https://github.com/qydq/Integrate/blob/master/res/sunst_android_activity_inflate.png?raw=true) 
+ 
+![sunst](https://github.com/qydq/Integrate/blob/master/res/sunst_android_view_inflate.png?raw=true)  
+
+
+
 先总结一下View的绘制流程：
 
 1. 在onCreate方法中通过setContentView将View及ViewGroup初始化，即将我们自己的XML文件转换了Java对象，并添加到系统根布局DecorView中。
