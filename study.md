@@ -1313,12 +1313,272 @@ python里面各种简单的算法题
 ## 58. 开源框架，为什么使用，与别的有什么区别？
 这个问题基本必问。在自己简历上写什么框架，他就会问什么。
 
-网络请求：xUtils3，okhttp，retrofit  
+网络请求：[xUtils3](https://www.cnblogs.com/wangying222/p/5590437.html)，okhttp，[retrofit](https://blog.csdn.net/carson_ho/article/details/73732076)  
 异步：RxJava，AsyncTask  
 图片处理：Picasso，Glide  
-消息传递：EventBus
+消息传递：EventBus (注：3。0)
+混合开发:weex,rn
+### 网络请求
 
-weex
+1.xutils3  4个模块
+
+* (1).DbUtils、用来操作数据库  
+```
+DbUtils dUtils = DbUtils.create(MainActivity.this, "Student");
+            try {
+                //创建表，表名为包名_StudentInfo
+                dUtils.createTableIfNotExist(StudentInfo.class);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+```          
+* (2).HttpUtils、
+```  
+// 请求参数
+RequestParams params = new RequestParams("http://www.baidu.com");
+x.http().get(params, new CommonCallback<String>() {
+    @Override
+    public void onCancelled(CancelledException arg0) {
+    }
+    @Override
+    public void onError(Throwable arg0, boolean arg1) {
+    }
+    @Override
+    public void onFinished() {
+    }
+    @Override
+    public void onSuccess(String arg0) {
+        // 成功下载，显示到txtv上面
+        txtv.setText(arg0);
+    }
+});
+```  
+* (3).ViewUtils、 可以用来代替findViewbyId，也可以用来给控件添加点击事件(注解形式)
+* (4).BitmapUtils 用来加载ImageView的图片资源，可以加载本地、网络
+```
+BitmapUtils bUtils = new BitmapUtils(this); 2 bUtils.display(imgv,"http://xiaotuanzi.jpg"); 
+```
+2.retrofit
+
+>准确来说，Retrofit是一个RESTful的HTTP网络请求框架的封装。原因：网络请求的工作本质上是OkHttp完成，而Retrofit仅负责网络请求接口的封装
+
+使用 Retrofit 的步骤共有7个：
+
+步骤1：添加Retrofit库的依赖
+```
+dependencies {
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    // Retrofit库
+    compile 'com.squareup.okhttp3:okhttp:3.1.2'
+    // Okhttp库
+  }
+```
+步骤2：创建 接收服务器返回数据 的类
+步骤3：创建 用于描述网络请求 的接口
+Retrofit将 Http请求 抽象成 Java接口：采用 注解 描述网络请求参数 和配置网络请求参数
+```
+public interface GetRequest_Interface {
+
+    @GET("openapi.do?keyfrom=Yanzhikai&key=2032414398&type=data&doctype=json&version=1.1&q=car")
+    Call<Translation>  getCall();
+    // @GET注解的作用:采用Get方法发送网络请求
+ 
+    // getCall() = 接收网络请求数据的方法
+    // 其中返回类型为Call<*>，*是接收数据的类（即上面定义的Translation类）
+    // 如果想直接获得Responsebody中的内容，可以定义网络请求返回值为Call<ResponseBody>
+}
+```
+网络请求方法注解：
+>1.@GET、@POST、@PUT、@DELETE、@HEAD、@PATH、@OPTIONS、
+>2.@HTTP 用于替换以上7个注解的作用及更多扩展功能。
+
+网络请求参数注解：
+>@Header、@headers、@URL、@Body、@Path、@Field、@FieldMap、@Part、@PartMap、@Query、@QueryMap
+
+步骤4：创建 Retrofit 实例
+```
+Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://sunst.lifangfang.com/") // 设置网络请求的Url地址
+            .addConverterFactory(GsonConverterFactory.create()) // 设置数据解析器
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) // 支持RxJava平台
+            .build();
+```
+步骤5：创建 网络请求接口实例 并 配置网络请求参数
+```
+// 创建 网络请求接口 的实例
+GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+
+//对 发送请求 进行封装
+Call<Reception> call = request.getCall();
+```
+步骤6：发送网络请求（异步 / 同步）
+```
+/发送网络请求(异步)
+call.enqueue(new Callback<Translation>() {
+    //请求成功时回调
+    @Override
+    public void onResponse(Call<Translation> call, Response<Translation> response) {
+        //请求处理,输出结果
+        response.body().show();
+    }
+
+    //请求失败时候的回调
+    @Override
+    public void onFailure(Call<Translation> call, Throwable throwable) {
+        System.out.println("连接失败");
+    }
+});
+
+// 发送网络请求（同步）
+Response<Reception> response = call.execute();
+```
+### 异步
+
+http://gank.io/post/560e15be2dca930e00da1083
+非常非常经典的一篇文章，失效了。
+
+重新找了一篇：下次自己记录
+
+https://blog.csdn.net/xx326664162/article/details/52068014
+
+### 图片处理
+
+使用参考连接：
+
+https://www.cnblogs.com/simadi/p/6707409.html
+https://www.jb51.net/article/108596.htm
+
+1.Picasso
+
+>Square公司开源的一个Android图形缓存库
+>一个Android下强大的图片下载缓存库
+
+Step1:
+
+compile 'com.squareup.picasso:picasso:2.5.2'
+
+Step2:
+```
+ImageView targetImageView = (ImageView) findViewById(R.id.imageView);
+//网络加载一张图片
+String internetUrl = "http://b.hiphotos.baidu.com/image/pic/item/32fa828ba61ea8d3fcd2e9ce9e0a304e241f5803.jpg";
+Picasso
+    .with(context)
+    .load(internetUrl)
+    .into(targetImageView);
+//Resources 中加载
+int resourceId = R.mipmap.ic_launcher;
+Picasso
+    .with(context)
+    .load(resourceId)
+    .into(targetImageView);
+//本地File文件中加载
+File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Running.jpg");
+Picasso
+    .with(context)
+    .load(file)
+    .into(targetImageView); 
+```
+2.Glide：是Google员工的开源项目，基于Picasso的一个框架，代码风格与Picasso非常相似，增加了更多的功能，
+非常重要的就是支持gif，当然它的包会大一些。如果你的项目对图片的使用场景非常多，并且需要支持gif，则推荐使用。
+目前在Github上的Star已经达到13636个。
+
+https://www.cnblogs.com/guilin-hu/p/5706916.html
+
+### 消息传递：
+使用EventBus了，在看代码之前要记得三个问题。
+1、事件发布者如何发布事件
+2、事件订阅者如何订阅事件
+3、订阅者如何准确接收发布者发布的多个事件中的一个(假设发布者发布多个事件，订阅者只是订阅其中的一个事件)
+(1)首先在gradle文件中添加EventBus的依赖
+compile 'org.greenrobot:eventbus:3.0.0'
+(2)在相关Activity中的onCreat()、onDestory()注册和解注EventBus
+
+```
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
+    }
+
+@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+```
+(3)事件发布者如何发布事件
+```
+EventBus.getDefault().post(实参);
+```
+(4)事件订阅者订阅事件
+```
+@Subscribe
+public void onEventMainThread(实参){
+    //接收到发布者发布的事件后，进行相应的处理操作
+}
+```
+这里要注意的是：EventBus在 3.0 版本后，事件订阅监听的方法名可以随意起，不同于旧版本，名字是特定的。
+
+```
+public void onEventMainThread(param)  
+{  
+　　  //如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行，
+　　　//这个在Android中是非常有用的，因为在Android中只能在UI线程中跟新UI，所以在onEvnetMainThread方法中是不能执行耗时操作的。
+}  
+  
+public void onEventPostThread(param)  
+{  
+ //如果使用onEvent作为订阅函数，那么该事件在哪个线程发布出来的，onEvent就会在这个线程中运行，也就是说发布事件和接收事件线程在同一个线程。
+　　  //使用这个方法时，在onEvent方法中不能执行耗时操作，如果执行耗时操作容易导致事件分发延迟。     
+}  
+  
+public void onEventBackgroundThread(param)  
+{  
+ //如果使用onEventBackgrond作为订阅函数，那么如果事件是在UI线程中发布出来的，那么onEventBackground就会在子线程中运行，如果事件本来就是子线程中发布出来的，那么onEventBackground函数直接在该子线程中执行。     
+}  
+  
+public void onEventAsync(param)  
+{  
+　　//使用这个函数作为订阅函数，那么无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync.         
+} 
+```
+但是新版本需要手动的添加注解@Subscribe(这是必不可少的)。既然名字可以随意起，那么又怎么控制在什么线程内进行处理呢？
+```
+@Subscribe(threadMode = ThreadMode.MAIN)
+```
+给注解设置ThreadMode就可以了。
+
+(5)事件发布者和订阅者如何对应上
+
+可以看到发布事件和订阅事件，都需要传入一个实参，而且在post方法中我们也看到了，这个实参是对象类型的，大家猜想的话也可以知道，发布和订阅事件是通过一个对象实参来进行关联的。
+
+```
+public class TestEvent {
+    private int mMsg;
+    public TestEvent(int msg) {
+        mMsg = msg;
+    }
+    public int getMsg(){
+        return mMsg;
+    }
+}
+```
+这个类很简单，只有一个变量和一个构造方法、get方法。具体内容根据项目需求来定。
+
+基本上了解这些就可以搞明白EventBus的使用了
+
+下面上一下我写的Demo，功能很简单，就是模仿下载的进度条，因为现在用的最多的是通过handler来进行处理的，而EventBus的出现，可以完美的代替handler，
+
+而且实现了解耦。
+
+具体看这里：https://www.cnblogs.com/upwgh/p/6394901.html
+
+
+### 混合开发
+
+[weex,rn比较](https://blog.csdn.net/sun_hongtao/article/details/75451653)
 
 ## 59. WebView与js交互（调用哪些API）
 本人知乎：
