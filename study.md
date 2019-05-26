@@ -378,7 +378,7 @@ DDMS是一个程序执行查看器，在里面可以看见线程和堆栈等信�
 ## 23. JNI编程
 [http://www.jianshu.com/p/aba734d5b5cd](http://www.jianshu.com/p/aba734d5b5cd)  
 
-什么是NDK
+### 什么是NDK
 
 NDK 其中NDK的全拼是：Native Develop Kit。
 
@@ -386,9 +386,12 @@ NDK 其中NDK的全拼是：Native Develop Kit。
 
 >Android NDK 是一套允许您使用原生代码语言(例如C和C++) 实现部分应用的工具集。在开发某些类型应用时，这有助于您重复使用以这些语言编写的代码库。
 
-什么是Jni
+Android 开发语言是Java，不过我们也知道，Android是基于Linux的，其核心库很多都是C/C++的，比如Webkit等。那么NDK的作用，就是Google为了提供给开发者一个在Java中调用C/C++代码的一个工作。NDK本身其实就是一个交叉工作链，包含了Android上的一些库文件，然后，NDK为了方便使用，提供了一些脚本，使得更容易的编译C/C++代码。总之，在Android的SDK之外，有一个工具就是NDK，用于进行C/C++的开发。一般情况，是用NDK工具把C/C++编译为.co文件，然后在Java中调用。
 
-JNI是Java平台的一个特性(并不是Android系统特有的),它是一个协议，全称：JJava Native Interface。
+
+### 什么是JNI
+
+JNI是Java平台的一个特性(并不是Android系统特有的),它是一个协议，全称：Java Native Interface。
 主要是定义了一些JNI函数，让开发者可以通过调用这些函数实现Java代码调用C/C++的代码，C/C++的代码也可以调用Java的代码，
 这样就可以发挥各个语言的特点了
 
@@ -399,41 +402,50 @@ java反编译比C语言容易，一般加密算法都是用C语言编写，不�
 代码移植，如果之前用C语言开发过模块，可以复用已经存在的c代码
 
 
-1、新建一个类，声明native方法。这个类是java与C/C++交互的中介，方法由java声明，由C/C++实现。
+### JNI使用
 
-不在Activity类里面写是为了避免编译时报错：找不到android.support.v7.app.AppCompatActivity
+* step 1：在Java中先声明一个native方法
+* step 2：编译Java源文件得到.class文件
+* step 3：通过javah -jni命令导出JNI的.h头文件
+* step 4：使用Java需要交互的本地代码，实现在Java中声明的Native方法（如果Java需要与C++交互，那么就用C++实现Java的Native方法。）
+* step 5：将本地代码编译成动态库(Windows系统下是.dll文件，如果是Linux系统下是.so文件，如果是Mac系统下是.jnilib)
+* step 6：在Activity里面直接调用本地.so库文件的方法
+
+
+1、新建一个类，声明native方法。这个类是java与C/C++交互的媒介，方法由java声明，由C/C++实现。
+
+Tips:不在Activity类里面写是为了避免编译时报错：找不到android.support.v7.app.AppCompatActivity
 
     public class myJNI {
-    
     　　//加载so库
         static {
             System.loadLibrary("JniTest");
         }
-    
     　　//native方法
         public static native String sayHello();
-    
     }
 
-打开android studio终端，使用javac编译上述文件，生成class文件
+2、打开android studio终端Terminals，用javac编译上述文件，生成class文件
     
     javac myJNI.java
     
-确认自己类的包名！然后在上一级的位置使用javah生成.h头文件
 
-一定要在上一级哦，不然不会报错：找不到xxx类
 
- 
+3、确认自己类的包名，在上一级的位置使用javah -jni命令生成.h头文件
+
+特别注意：一定要在上一级哦，不然会报错：找不到xxx类
+
 
 比如我的myJNI.class在
 
-D:\AndroidStudioProject\testJNI\app\src\main\java\com\example\binbin\testjni
+>D:\public\android\open\ref_jni\app\src\main\java\com\example\bin\testjni  
+
 我的包名是：
 
-package com.example.binbin.testjni;
+    package com.example.binbin.testjni;
 所以我的javah命令应该这么写:
 
-D:\AndroidStudioProject\testJNI\app\src\main\java>javah -jni com.example.binbin.testjni.myJNI
+>D:\public\android\ref_jni\app\src\main\java>javah -jni com.example.bin.testjni.myJNI
 
 
 然后就能看到生成了一个h文件。
@@ -441,8 +453,6 @@ D:\AndroidStudioProject\testJNI\app\src\main\java>javah -jni com.example.binbin.
  
 
 4、新建一个jni文件夹，新建main.c，把.h里面的内容复制进去，并实现里面的函数。
-
- 
 
 生成的h文件
 
@@ -501,27 +511,32 @@ D:\AndroidStudioProject\testJNI\app\src\main\java>javah -jni com.example.binbin.
     
 还要在jni文件夹下添加一个空白的util.c文件，防止会报错
 
-
 5、生成SO库
 
-首先要配置ndk，gradle.properties和打开app Module的build.gradle文件，在defaultConfig节点里添加以下代码
-注意这里的moduleName，是我们在之前自己编写的类里面加载的so库名
-ndk {
-           moduleName "JniTest"
-           ldLibs "log", "z", "m"
-           abiFilters "armeabi", "armeabi-v7a", "x86"
-       }
-  
-完成以上步骤之后，我们rebuild一下就可以生成so库了
-  
-在项目的app\build\intermediates\ndk\debug\lib路径下
+首先要配置ndk，
 
-6、配置so库
+gradle.properties
+
+>android.useDeprecatedNdk=true
+
+然后app Module的build.gradle文件，在defaultConfig节点里添加以下代码
+
+Tips：注意这里的moduleName，是我们在之前自己编写的类里面加载的so库名
+
+        ndk {
+                   moduleName "JniTest"
+                   ldLibs "log", "z", "m"
+                   abiFilters "armeabi", "armeabi-v7a", "x86"
+               }
+  
+完成以上步骤之后，我们rebuild一下就可以生成so库了，这个库在项目的
+>app\build\intermediates\ndk\debug\lib
+
+路径下
+
+6、使用JNI
 
 在src\main下新建文件夹jniLIB，并将生成的SO文件拷贝到该文件夹下
-
-
-7、使用JNI
 
 因为native方法声明成了静态的方法，在Activity里面直接调用myJNI类就行
 
@@ -529,13 +544,9 @@ ndk {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
     
-    
             text = (TextView)findViewById(R.id.text);
     　　　　　//调用
             text.setText(myJNI.sayHello());
-    
-    
-    
         }
     }
     
@@ -547,7 +558,7 @@ ok！
 
 编写静态方法（用java声明）-->编译生成class文件--->编译生成h文件---->编写C文件（用C/C++实现）
 
----->配置NDK---->配置so库---->在Activity调用（Java调用C/C++）。
+---->配置NDK，rebuild生成so库---->在Activity调用（Java调用C/C++）。
 
 **此处延伸：**
 项目中使用JNI的地方，如：核心逻辑，密钥，加密逻辑
