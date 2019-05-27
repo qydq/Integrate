@@ -1503,7 +1503,7 @@ python里面各种简单的算法题
 这个问题基本必问。在自己简历上写什么框架，他就会问什么。
 
 网络请求：[xUtils3](https://www.cnblogs.com/wangying222/p/5590437.html)，okhttp，[retrofit](https://blog.csdn.net/carson_ho/article/details/73732076)  
-异步：RxJava，AsyncTask  
+异步：[RxJava](https://blog.csdn.net/xx326664162/article/details/52068014)，AsyncTask  
 图片处理：Picasso，Glide  
 消息传递：EventBus (注：3。0)
 混合开发:weex,rn  
@@ -1516,12 +1516,12 @@ python里面各种简单的算法题
 * (1).DbUtils、用来操作数据库  
 ```
 DbUtils dUtils = DbUtils.create(MainActivity.this, "Student");
-            try {
-                //创建表，表名为包名_StudentInfo
-                dUtils.createTableIfNotExist(StudentInfo.class);
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
+try {
+    //创建表，表名为包名_StudentInfo
+    dUtils.createTableIfNotExist(StudentInfo.class);
+} catch (DbException e) {
+    e.printStackTrace();
+}
 ```          
 * (2).HttpUtils、
 ```  
