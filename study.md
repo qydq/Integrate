@@ -236,9 +236,9 @@ Activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResu
   
 1、完整生命周期: 即从一个Activity从出现到消失，对应的周期方法是从onCreate()到onDestroy()  
   
-2、可见生命周期: 当Activity处于可以用户看见的状态，但不一定能与用户交互时，将多次执行从onStart()到onStop()  
-  
-3、前景生命周期: 当Activity处于Activity栈最顶端，能够与其他用户进行交互时，将多次执行从onResume()到onPause()  
+2、前景生命周期: 当Activity处于Activity栈最顶端，能够与其他用户进行交互时，将多次执行从onResume()到onPause()  
+
+3、可见生命周期: 当Activity处于可以用户看见的状态，但不一定能与用户交互时，将多次执行从onStart()到onStop()  
 
 **如下例子**
 
@@ -248,7 +248,9 @@ Activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResu
 
 ## 6. 如果后台的Activity由于某原因被系统回收了，如何在被系统回收之前保存当前状态？
 
-重写`onSaveInstanceState()`方法，在此方法中保存需要保存的数据，该方法将会在Activity被回收之前调用。通过重写`onRestoreInstanceState()`方法可以从中获取保存好的数据
+重写`onSaveInstanceState()`方法，在此方法中保存需要保存的数据，该方法将会在Activity被回收之前调用。   
+
+通过重写`onRestoreInstanceState()`方法可以从中获取保存好的数据
   
 ## 7. Activity的启动模式有哪些？是什么含义？  
   
@@ -264,9 +266,9 @@ Activity的生命周期方法有：onCreate()、onStart()、onReStart()、onResu
 
 对于多个Activity
 
-> 1、**记录打开的Activity**：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可
-> 2、**发送特定广播**：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可
-> 3、**递归退出**：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭
+> 1、**记录打开的Activity**：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可  
+> 2、**发送特定广播**：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可  
+> 3、**递归退出**：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭  
 
 <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
 
@@ -291,7 +293,7 @@ Android中动画有三类，分别是FrameAnimation，TweenAnimation，PropertyA
   
 >* FrameAnimation（逐帧动画）：将多张图片组合起来进行播放，类似于早期电影的工作原理，很多App的loading是采用这种方式。  
 >* TweenAnimation（补间动画）：是对某个View进行一系列的动画的操作，包括淡入淡出（Alpha），缩放（Scale），平移（Translate），旋转（Rotate）四种模式。  
->* PropertyAnimation（属性动画）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。  
+>* PropertyAnimation（属性动画android3.0+）：属性动画不再仅仅是一种视觉效果了，而是一种不断地对值进行操作的机制，并将值赋到指定对象的指定属性上，可以是任意对象的任意属性。  
 
   <font color=#0099ff size=4 face="黑体"><b>Tips：</b></font>
   >属性动画实现原理就是修改控件的属性值实现的动画  
@@ -563,6 +565,9 @@ ok！
 **此处延伸：**
 项目中使用JNI的地方，如：核心逻辑，密钥，加密逻辑
 
+**此处继续延伸：**
+
+ * [Android不同架构的机器有何不同？](https://blog.csdn.net/kester_/article/details/71055901)
 
 ## 24. Android里的Intent传递的数据有大小限制吗，如何解决？
 
