@@ -2452,7 +2452,33 @@ printOne---1
 Process finished with exit code 0
 ```
 
+## 69.android如何做性能优化？
 
+![Android性能优化（一）之启动加速35%](https://www.jianshu.com/p/f5514b1a826c)
+
+
+![图片的三级缓存中,图片加载到内存中,如果内存快爆了,会发生什么？怎么处理？](https://blog.csdn.net/Android_SE/article/details/91445544)
+
+
+![第8章 Android异常与性能优化相关面试问题](https://www.cnblogs.com/zhaojianhua/p/8574136.html)
+
+![LeakCanary 内存泄露监测原理研究](https://www.jianshu.com/p/5ee6b471970e)
+
+## 70.谈谈扫码支付的流程
+
+![谈谈扫码支付的实现流程](https://www.jianshu.com/p/f1a088dc7a66)
+
+##71.Java基础知识面试
+
+https://blog.csdn.net/qq_22067469/article/details/85808492
+
+##72.面试题——常见5种运行时异常
+
+https://blog.csdn.net/iblade/article/details/50523263
+
+##73.volatile作用，可见性原理，与synchronized区别
+
+![volatile作用，可见性原理，与synchronized区别](https://blog.csdn.net/Dennis_Wu_/article/details/82049875)
 
 ---
 
